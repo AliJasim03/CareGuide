@@ -28,13 +28,41 @@ class SignUpTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progressBar.setProgress(0, animated: false)
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        for cell in tableView.visibleCells {
+            for subview in cell.contentView.subviews {
+                setBorderColor(for: subview)
+            }
+        }
+    }
+
+    func setBorderColor(for view: UIView) {
+        if let textField = view as? UITextField {
+            textField.layer.borderWidth = 0.6
+            textField.layer.cornerRadius = 10
+            textField.layer.borderColor = UIColor(red: 23/255, green: 70/255, blue: 102/255, alpha: 1).cgColor
+            textField.clipsToBounds = true
+            let color = UIColor(red: 136/255, green: 160/255, blue: 184/255, alpha: 1)
+
+            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "", attributes: [.foregroundColor: color])
+            textField.textColor = UIColor(red: 23/255, green: 70/255, blue: 102/255, alpha: 1)
+
+        } else {
+            for subview in view.subviews {
+                setBorderColor(for: subview)
+            }
+        }
+    }
+
     // Remove the section hieght and the content inside it
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
