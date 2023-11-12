@@ -16,6 +16,13 @@ class Login: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+          
+                setBorderColor(for: view)
+            
+        
+    }
     @IBAction func loginButtonTapped(_ sender: Any) {
 
 
@@ -39,7 +46,7 @@ class Login: UIViewController {
 
         //TODO: fix the animation as it executes very fast if possible
         //TODO: add the logic to check different type of user
-        DataBase.shared.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
+        DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
                                     completion: {
             isUser in if isUser{
                 UserDefaults.standard.set(Auth.auth().currentUser!.uid,forKey: "user_uid_key")
@@ -48,7 +55,7 @@ class Login: UIViewController {
                 self.view.window!.rootViewController = newVc        }
         })
         
-        DataBase.shared.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Hospital",
+        DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Hospital",
                                     completion: {
             isUser in if isUser{
 
@@ -64,6 +71,23 @@ class Login: UIViewController {
         // This does not do anything
 //      self.performSegue(withIdentifier: "UserHome", sender: self)
 
+    }
+    func setBorderColor(for view: UIView) {
+        if let textField = view as? UITextField {
+            textField.layer.borderWidth = 0.6
+            textField.layer.cornerRadius = 10
+            textField.layer.borderColor = UIColor(red: 23/255, green: 70/255, blue: 102/255, alpha: 1).cgColor
+            textField.clipsToBounds = true
+            let color = UIColor(red: 136/255, green: 160/255, blue: 184/255, alpha: 1)
+
+            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "", attributes: [.foregroundColor: color])
+            textField.textColor = UIColor(red: 23/255, green: 70/255, blue: 102/255, alpha: 1)
+
+        } else {
+            for subview in view.subviews {
+                setBorderColor(for: subview)
+            }
+        }
     }
     
 }

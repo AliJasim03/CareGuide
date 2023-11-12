@@ -121,9 +121,9 @@ class SignUpTableViewController: UITableViewController {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let valid = checkRegistraion
         guard valid() else{return}
-        DataBase.shared.createUser(self, email: emailTextField.text!, password: passwordTextField.text!, completion: { [self] error in if error != nil {print(error ?? "")
+        DataBase.db.createUser(self, email: emailTextField.text!, password: passwordTextField.text!, completion: { [self] error in if error != nil {print(error ?? "")
             return}
-            DataBase.shared.saveUserData(user: User(email: emailTextField.text!, fullName: nameTextField.text!, age: Int(ageTextField.text!)!, gender: genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)!, phoneNumber: phoneTextField.text!))
+            DataBase.db.saveUserData(user: User(email: emailTextField.text!, fullName: nameTextField.text!, age: Int(ageTextField.text!)!, gender: genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)!, phoneNumber: phoneTextField.text!))
         })
         
     }

@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DataBase {
-    static let shared = DataBase()
+    static let db = DataBase()
     
     private init (){}
         
