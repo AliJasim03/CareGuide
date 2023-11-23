@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Registeration Form-->
+        <!--Registration-->
         <scene sceneID="7ao-eV-Kt0">
             <objects>
                 <tableViewController id="zM5-hf-eUH" customClass="SignUpTableViewController" customModule="CareGuide" customModuleProvider="target" sceneMemberID="viewController">
@@ -148,22 +148,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TgN-nL-Je9" userLabel="dateOfBirth">
-                                                    <rect key="frame" x="20" y="10" width="353" height="45"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="MT7-cC-H7w"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GI9-ST-KIi">
+                                                    <rect key="frame" x="20.000000000000007" y="22" width="104.66666666666669" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="updateProgressBar:" destination="zM5-hf-eUH" eventType="editingChanged" id="lGH-Cw-abz"/>
-                                                    </connections>
-                                                </textField>
+                                                    <color key="textColor" red="0.15895022750235668" green="0.50918375896630419" blue="0.74360415720103101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="hcm-ML-8eK">
+                                                    <rect key="frame" x="224" y="0.0" width="149" height="65"/>
+                                                </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TgN-nL-Je9" firstAttribute="centerY" secondItem="qOb-kG-TX4" secondAttribute="centerY" id="TGY-Sq-10X"/>
-                                                <constraint firstItem="TgN-nL-Je9" firstAttribute="trailing" secondItem="qOb-kG-TX4" secondAttribute="trailingMargin" id="bbO-Ef-sUA"/>
-                                                <constraint firstItem="TgN-nL-Je9" firstAttribute="leading" secondItem="qOb-kG-TX4" secondAttribute="leadingMargin" id="cb7-9L-4py"/>
+                                                <constraint firstItem="hcm-ML-8eK" firstAttribute="top" secondItem="qOb-kG-TX4" secondAttribute="top" id="Eab-4o-ma7"/>
+                                                <constraint firstItem="hcm-ML-8eK" firstAttribute="leading" secondItem="GI9-ST-KIi" secondAttribute="trailing" constant="100" id="ErI-fP-arK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="GI9-ST-KIi" secondAttribute="bottom" constant="11" id="G62-UW-9mh"/>
+                                                <constraint firstItem="GI9-ST-KIi" firstAttribute="top" secondItem="qOb-kG-TX4" secondAttribute="topMargin" constant="11" id="SFV-Yv-o7H"/>
+                                                <constraint firstItem="GI9-ST-KIi" firstAttribute="leading" secondItem="qOb-kG-TX4" secondAttribute="leadingMargin" id="Ucv-wk-tqs"/>
+                                                <constraint firstAttribute="bottom" secondItem="hcm-ML-8eK" secondAttribute="bottom" id="k5K-pQ-6pn"/>
+                                                <constraint firstItem="hcm-ML-8eK" firstAttribute="leading" secondItem="GI9-ST-KIi" secondAttribute="trailing" constant="100" id="lcZ-bK-viD"/>
+                                                <constraint firstAttribute="trailing" secondItem="hcm-ML-8eK" secondAttribute="trailing" constant="20" id="qHm-3m-1S3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -306,9 +309,8 @@
                             <outlet property="delegate" destination="zM5-hf-eUH" id="np6-ik-ccW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Registeration Form" id="qTE-Qb-RN2"/>
+                    <navigationItem key="navigationItem" title="Registration" id="1E4-eo-RcO"/>
                     <connections>
-                        <outlet property="ageTextField" destination="TgN-nL-Je9" id="7wx-IL-Edp"/>
                         <outlet property="confirmPasswordTextField" destination="jPh-AE-JEE" id="KJR-QD-pCH"/>
                         <outlet property="emailTextField" destination="Zei-8Q-emJ" id="7bI-rI-sEO"/>
                         <outlet property="genderSegment" destination="AER-wp-Zb3" id="LUo-th-sbI"/>

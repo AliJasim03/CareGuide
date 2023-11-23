@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User Tab Bar Contoller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="gpg-At-4vX">
             <objects>
-                <tabBarController storyboardIdentifier="UserTabBar" id="WxL-re-6L8" customClass="UserTabBarContoller" customModule="CareGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UserTabBar" id="WxL-re-6L8" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gwd-cm-5er">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -52,12 +52,6 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forget password?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGe-KY-HEH">
-                                <rect key="frame" x="16" y="458.66666666666669" width="361" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBp-Qp-Kgh">
                                 <rect key="frame" x="136.66666666666666" y="504" width="119.99999999999997" height="32"/>
                                 <color key="backgroundColor" red="0.086274509799999996" green="0.27450980390000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,19 +93,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kdk-0b-Tp7" secondAttribute="trailing" constant="16" id="270-jg-OTs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DYV-2h-Ba2" secondAttribute="trailing" constant="16" id="51z-uW-QUk"/>
                             <constraint firstItem="NId-Al-nEl" firstAttribute="top" secondItem="Kdk-0b-Tp7" secondAttribute="bottom" constant="10" id="Dxf-iU-XNV"/>
-                            <constraint firstItem="qGe-KY-HEH" firstAttribute="top" secondItem="DYV-2h-Ba2" secondAttribute="bottom" constant="15" id="Fsz-eu-ISl"/>
                             <constraint firstItem="DYV-2h-Ba2" firstAttribute="top" secondItem="NId-Al-nEl" secondAttribute="bottom" constant="12" id="Kif-YH-XGr"/>
                             <constraint firstItem="zBp-Qp-Kgh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TKK-jk-29C"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qGe-KY-HEH" secondAttribute="trailing" constant="16" id="UGG-nh-o69"/>
                             <constraint firstItem="Kdk-0b-Tp7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ueb-lK-qkw"/>
                             <constraint firstItem="NId-Al-nEl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="V54-p6-QtE"/>
                             <constraint firstItem="DYV-2h-Ba2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Y8D-rb-rtp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="52q-0e-qOG" secondAttribute="trailing" constant="70" id="Zer-4e-LAR"/>
-                            <constraint firstItem="qGe-KY-HEH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="euB-Yi-vho"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NId-Al-nEl" secondAttribute="trailing" constant="16" id="fdr-Lq-DZp"/>
                             <constraint firstItem="Kdk-0b-Tp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="kxf-Tf-Cek"/>
-                            <constraint firstItem="zBp-Qp-Kgh" firstAttribute="top" secondItem="qGe-KY-HEH" secondAttribute="bottom" constant="25" id="mmF-HL-jwn"/>
                             <constraint firstItem="52q-0e-qOG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="oLo-vW-bAC"/>
+                            <constraint firstItem="zBp-Qp-Kgh" firstAttribute="top" secondItem="DYV-2h-Ba2" secondAttribute="bottom" constant="60.329999999999998" id="ul6-Il-DSs"/>
                             <constraint firstItem="52q-0e-qOG" firstAttribute="top" secondItem="zBp-Qp-Kgh" secondAttribute="bottom" constant="100" id="zdK-kG-gnN"/>
                         </constraints>
                     </view>
@@ -121,6 +112,7 @@
                         <outlet property="passwordTextField" destination="UuV-YF-Zmt" id="3TG-ri-sFR"/>
                         <segue destination="fJf-rl-Vap" kind="show" identifier="" id="pCG-L5-rNV"/>
                         <segue destination="RKu-Zv-kn5" kind="show" identifier="" id="z6M-hi-k3s"/>
+                        <segue destination="xHe-Dy-VTJ" kind="show" id="PPL-YJ-GKc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -137,6 +129,16 @@
             </objects>
             <point key="canvasLocation" x="1822.1374045801526" y="-17.605633802816904"/>
         </scene>
+        <!--AdminTabBar-->
+        <scene sceneID="G8Z-Bk-mNg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AdminTabBar" id="xHe-Dy-VTJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="v7I-hR-HHX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oiS-B1-Ygu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="50"/>
+        </scene>
         <!--SignUp-->
         <scene sceneID="1oF-Lp-543">
             <objects>
@@ -150,7 +152,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cn3-dn-eYN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VQp-cQ-mfW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Main" automaticallyAdjustsScrollViewInsets="NO" id="VQp-cQ-mfW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="58l-WJ-a2P">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

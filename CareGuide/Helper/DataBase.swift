@@ -79,7 +79,6 @@ class DataBase {
 
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-//                _ = document.data().map(String.init(describing:)) ?? "nil"
                 completion(true)
             } else {
                 completion(false)

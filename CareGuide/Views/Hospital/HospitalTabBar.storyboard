@@ -19,7 +19,6 @@
                     <connections>
                         <segue destination="kHM-zn-bVL" kind="relationship" relationship="viewControllers" id="Im0-MU-pxo"/>
                         <segue destination="Kba-YA-m3S" kind="relationship" relationship="viewControllers" id="fra-PX-JZB"/>
-                        <segue destination="aJ5-wY-Qi5" kind="relationship" relationship="viewControllers" id="mjd-G5-5eV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zqe-cn-8RM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,16 +44,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAF-W3-Ubk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="456"/>
-        </scene>
-        <!--ProfileHospital-->
-        <scene sceneID="UGw-aj-N3C">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ProfileHospital" id="aJ5-wY-Qi5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="6tf-Rn-piP"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PgF-8R-Jal" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-314" y="1103"/>
         </scene>
     </scenes>
 </document>

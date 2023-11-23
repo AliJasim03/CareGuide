@@ -74,11 +74,11 @@ class SignUpTableViewController: UITableViewController {
         let valid = Helper.shared.wrapTextFields(textFields: [nameTextField,emailTextField,ageTextField,phoneTextField,passwordTextField,confirmPasswordTextField])
 
         guard valid && progressBar.progress == 1.0 else{
-            Helper.shared.showAlert(Controller: self, title: "Invalid Registraion Form", message: "Please fill your registraoin form")
+            Helper.shared.showAlert(Controller: self, title: "Invalid Registration Form", message: "Please fill your registraoin form")
             return false
         }
         guard progressBar.progress == 1.0 else{
-            Helper.shared.showAlert(Controller: self, title: "Invalid Registraion Form", message: "Please Check your text fields input")
+            Helper.shared.showAlert(Controller: self, title: "Invalid Registration Form", message: "Please Check your text fields input")
             return false
         }
         

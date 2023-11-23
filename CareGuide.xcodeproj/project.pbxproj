@@ -33,9 +33,8 @@
 		835B442C2AD3076A00E9A302 /* HospitalTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835B442B2AD3076A00E9A302 /* HospitalTabBar.storyboard */; };
 		835B44342AD3083300E9A302 /* HomeHospital.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835B44332AD3083300E9A302 /* HomeHospital.storyboard */; };
 		835B443A2AD30B2900E9A302 /* BookingHistoryHospital.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835B44392AD30B2900E9A302 /* BookingHistoryHospital.storyboard */; };
-		835B443C2AD30B3B00E9A302 /* ProfileHospital.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835B443B2AD30B3B00E9A302 /* ProfileHospital.storyboard */; };
 		8387B6282AE81D25006BBBFD /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387B6272AE81D25006BBBFD /* Hospital.swift */; };
-		8387B62C2AE90941006BBBFD /* UserTabBarContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387B62B2AE90941006BBBFD /* UserTabBarContoller.swift */; };
+		83DD18062B0F3C6900306AE5 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD18052B0F3C6900306AE5 /* AdminHomeViewController.swift */; };
 		83EF4C5F2AD47E9300B42A33 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EF4C5E2AD47E9300B42A33 /* SignUp.storyboard */; };
 		83EF4C612AD47ECE00B42A33 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */; };
 		83EF4C632AD4957700B42A33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C622AD4957700B42A33 /* User.swift */; };
@@ -85,9 +84,8 @@
 		835B442B2AD3076A00E9A302 /* HospitalTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HospitalTabBar.storyboard; sourceTree = "<group>"; };
 		835B44332AD3083300E9A302 /* HomeHospital.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeHospital.storyboard; sourceTree = "<group>"; };
 		835B44392AD30B2900E9A302 /* BookingHistoryHospital.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookingHistoryHospital.storyboard; sourceTree = "<group>"; };
-		835B443B2AD30B3B00E9A302 /* ProfileHospital.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileHospital.storyboard; sourceTree = "<group>"; };
 		8387B6272AE81D25006BBBFD /* Hospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital.swift; sourceTree = "<group>"; };
-		8387B62B2AE90941006BBBFD /* UserTabBarContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarContoller.swift; sourceTree = "<group>"; };
+		83DD18052B0F3C6900306AE5 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		83EF4C5E2AD47E9300B42A33 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
 		83EF4C622AD4957700B42A33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -199,6 +197,7 @@
 		832B4FD92AB9CACF00F8F705 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83DD18022B0F38EB00306AE5 /* Admin */,
 				835B440E2AD2A7DE00E9A302 /* User */,
 				832B4FAB2AB9C83500F8F705 /* Login.swift */,
 			);
@@ -228,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				835B442B2AD3076A00E9A302 /* HospitalTabBar.storyboard */,
-				835B443B2AD30B3B00E9A302 /* ProfileHospital.storyboard */,
 				835B44392AD30B2900E9A302 /* BookingHistoryHospital.storyboard */,
 				835B44332AD3083300E9A302 /* HomeHospital.storyboard */,
 			);
@@ -251,9 +249,16 @@
 			isa = PBXGroup;
 			children = (
 				83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */,
-				8387B62B2AE90941006BBBFD /* UserTabBarContoller.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		83DD18022B0F38EB00306AE5 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				83DD18052B0F3C6900306AE5 /* AdminHomeViewController.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,7 +382,6 @@
 				832B4FB12AB9C83700F8F705 /* Assets.xcassets in Resources */,
 				832B4FAF2AB9C83500F8F705 /* Main.storyboard in Resources */,
 				835B44262AD2FB7400E9A302 /* BookingHistory.storyboard in Resources */,
-				835B443C2AD30B3B00E9A302 /* ProfileHospital.storyboard in Resources */,
 				832E4AE52AD3241200066292 /* AdminTabBar.storyboard in Resources */,
 				835B442C2AD3076A00E9A302 /* HospitalTabBar.storyboard in Resources */,
 				832E4AE72AD3243600066292 /* HomeAdmin.storyboard in Resources */,
@@ -412,10 +416,10 @@
 				832B4FAC2AB9C83500F8F705 /* Login.swift in Sources */,
 				83EF4C612AD47ECE00B42A33 /* SignUpTableViewController.swift in Sources */,
 				832B4FA82AB9C83500F8F705 /* AppDelegate.swift in Sources */,
-				8387B62C2AE90941006BBBFD /* UserTabBarContoller.swift in Sources */,
 				832B4FAA2AB9C83500F8F705 /* SceneDelegate.swift in Sources */,
 				835B44182AD2F14200E9A302 /* DataBase.swift in Sources */,
 				8387B6282AE81D25006BBBFD /* Hospital.swift in Sources */,
+				83DD18062B0F3C6900306AE5 /* AdminHomeViewController.swift in Sources */,
 				835B43FE2AD05E7A00E9A302 /* Helper.swift in Sources */,
 				83EF4C632AD4957700B42A33 /* User.swift in Sources */,
 			);

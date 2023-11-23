@@ -45,6 +45,7 @@ class Login: UIViewController {
 
 
         //TODO: fix the animation as it executes very fast if possible
+        
         //TODO: add the logic to check different type of user
         DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
                                     completion: {
@@ -68,6 +69,12 @@ class Login: UIViewController {
             self.view.window!.rootViewController = newVc        }
         })
         
+        if email == "admin@gmail.com"{
+            UserDefaults.standard.set(Auth.auth().currentUser!.uid,forKey: "admin_uid_key")
+            let storyboard = UIStoryboard(name: "AdminTabBar", bundle: nil)
+            let newVc = storyboard.instantiateViewController(withIdentifier: "AdminTabBar")
+            self.view.window!.rootViewController = newVc
+        }
         // This does not do anything
 //      self.performSegue(withIdentifier: "UserHome", sender: self)
 

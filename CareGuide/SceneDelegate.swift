@@ -24,15 +24,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        if UserDefaults.standard.object(forKey: "hospital_uid_key") != nil{
 //            storyBaord = "HospitalTabBar"
 //        }
-//        if UserDefaults.standard.object(forKey: "admin_uid_key") != nil{
-//            storyBaord = "AdminTabBar"
-//        }
-//        
-//        let storyboard = UIStoryboard(name: storyBaord, bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier:"UserTabBarContoller")
-//        let navigationController = UINavigationController(rootViewController: viewController)
-//        self.window?.rootViewController = navigationController
-        
+        if UserDefaults.standard.object(forKey: "admin_uid_key") != nil{
+            storyBaord = "AdminTabBar"
+        }
+        if !storyBaord.isEmpty{
+            let storyboard = UIStoryboard(name: storyBaord, bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier:storyBaord)
+            self.window?.rootViewController = viewController
+        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
