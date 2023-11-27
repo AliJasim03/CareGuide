@@ -1,2 +1,0 @@
-# CareGuide
-Swift Mobile Application
