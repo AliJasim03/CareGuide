@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AdminHomeViewController: UIViewController {
 
@@ -16,6 +17,11 @@ class AdminHomeViewController: UIViewController {
     }
     
     @IBAction func signOutTappedButton(_ sender: Any) {
+        do{
+            try FirebaseAuth.Auth.auth().signOut()
+        } catch {
+            print("Error Signing out")
+        }
         UserDefaults.standard.removeObject(forKey: "admin_uid_key")
         UserDefaults.standard.synchronize()
         let storyboard = UIStoryboard(

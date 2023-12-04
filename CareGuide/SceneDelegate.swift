@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        checkDarkModePreference()
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
@@ -63,5 +64,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+    func checkDarkModePreference() {
+        // Retrieve the user's preference for dark mode
+        let isDarkModeEnabled = UserDefaults.standard.bool(forKey: "darkModeEnabled")
+        if isDarkModeEnabled {       
+            applyDarkMode()
+        } else {
+            applyLightMode()
+        }
+    }
+    
+    func applyDarkMode() {
+      if let scene = UIApplication.shared.connectedScenes.first(where: { $0 is UIWindowScene }) as? UIWindowScene {
+          scene.windows.first?.overrideUserInterfaceStyle = .dark
+      }
+    }
+
+    func applyLightMode() {
+      if let scene = UIApplication.shared.connectedScenes.first(where: { $0 is UIWindowScene }) as? UIWindowScene {
+          scene.windows.first?.overrideUserInterfaceStyle = .light
+      }
+    }
+
+    
 }
 

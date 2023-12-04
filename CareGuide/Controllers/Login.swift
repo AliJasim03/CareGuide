@@ -16,6 +16,8 @@ class Login: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
           
@@ -43,10 +45,13 @@ class Login: UIViewController {
 
         })
 
-
+        
         //TODO: fix the animation as it executes very fast if possible
         
         //TODO: add the logic to check different type of user
+        if Auth.auth().currentUser?.uid == nil {
+            return
+        }
         DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
                                     completion: {
             isUser in if isUser{
