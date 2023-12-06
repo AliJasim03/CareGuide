@@ -8,22 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="v9D-O5-2RH">
-            <objects>
-                <viewController id="iGe-VW-AH0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kfY-3x-re1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="btp-eC-fbN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="z2O-BT-get"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gb7-xD-pii" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2016" y="-701"/>
-        </scene>
         <!--Medical Packages-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -48,6 +32,35 @@
             </objects>
             <point key="canvasLocation" x="2016.030534351145" y="12.67605633802817"/>
         </scene>
+        <!--Add Hospital/Lab-->
+        <scene sceneID="yfN-M1-yQU">
+            <objects>
+                <tableViewController id="coj-Bz-AAl" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Xbi-4F-5Ld">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Xcf-qp-3jF">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xcf-qp-3jF" id="JvU-ci-FBA">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="coj-Bz-AAl" id="wsE-gp-Pcc"/>
+                            <outlet property="delegate" destination="coj-Bz-AAl" id="Q2T-yc-kWx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Hospital/Lab" id="rfn-Vp-4nR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rhw-KV-pXK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2108" y="-691"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cD9-gO-rur">
             <objects>
@@ -60,7 +73,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="1FO-bV-hBg"/>
-                        <segue destination="iGe-VW-AH0" kind="show" id="DPr-qJ-yG4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fe-9t-H5y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

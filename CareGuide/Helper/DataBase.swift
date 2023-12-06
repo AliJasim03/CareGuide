@@ -85,5 +85,18 @@ class DataBase {
             }
         }
     }
+    // sample data to check booking history for patient
+    static var bookings =  [Booking]()
+    
+        static func load(){
+            if bookings.isEmpty {
+                bookings = sampleBookings
+            }
+    }
+    static var sampleBookings = [
+        Booking(status: .cancelled, name: "IBN Al Nafees" , testType: "blood", date: "2022-03-11" , location: "Manama"),
+        Booking(status: .upcoming, name: "IBN Al Nafees", testType: "pressure", date: "2022-03-11" , location: "Manama")
+
+    ]
     
 }
