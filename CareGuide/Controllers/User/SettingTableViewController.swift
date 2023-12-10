@@ -70,43 +70,69 @@ class SettingTableViewController: UITableViewController {
 
 
     @IBAction func SignOutBtn(_ sender: Any) {
-        do{
+        let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { _ in
+            self.performSignOut()
+        }
+        alertController.addAction(signOutAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func performSignOut() {
+        do {
             try FirebaseAuth.Auth.auth().signOut()
+            UserDefaults.standard.removeObject(forKey: "user_uid_key")
+            UserDefaults.standard.synchronize()
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let newVc = storyboard.instantiateViewController(withIdentifier: "Main")
+            self.view.window!.rootViewController = newVc
         } catch {
             print("Error Signing out")
         }
-        UserDefaults.standard.removeObject(forKey: "user_uid_key")
-        UserDefaults.standard.synchronize()
-        let storyboard = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        )
-        let newVc = storyboard.instantiateViewController(withIdentifier: "Main")
-        self.view.window!.rootViewController = newVc
     }
-    
-    
     
     
     @IBAction func DeleteAccountBtn(_ sender: Any) {
-        let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
+  
+        
+        let alertController = UIAlertController(title: "Delete Account", message: "Type 'DELETE ACCOUNT' to confirm:", preferredStyle: .alert)
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
+        alertController.addTextField { textField in
+            textField.placeholder = "Type here"
+        }
 
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            // Check if the entered text is 'DELETE ACCOUNT'
+            if let text = alertController.textFields?.first?.text, text == "DELETE ACCOUNT" {
                 // Perform account deletion
                 self.deleteAccount()
+            } else {
+                // Show an alert indicating invalid input
+                self.showInvalidInputAlert()
             }
-            alertController.addAction(deleteAction)
+        }
+        alertController.addAction(deleteAction)
 
-            present(alertController, animated: true, completion: nil)
-        
-        
+        present(alertController, animated: true, completion: nil)
     
     }
     
-    
+    func showInvalidInputAlert() {
+        let alert = UIAlertController(title: "Invalid Input", message: "Please type 'DELETE ACCOUNT' to confirm deletion.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func ContactUsBtn(_ sender: Any) {
     }

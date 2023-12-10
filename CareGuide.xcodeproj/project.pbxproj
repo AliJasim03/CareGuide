@@ -38,6 +38,9 @@
 		83EF4C5F2AD47E9300B42A33 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EF4C5E2AD47E9300B42A33 /* SignUp.storyboard */; };
 		83EF4C612AD47ECE00B42A33 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */; };
 		83EF4C632AD4957700B42A33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C622AD4957700B42A33 /* User.swift */; };
+		954C5BB92B21EB30002C0F53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BB82B21EB30002C0F53 /* ContactUsViewController.swift */; };
+		954C5BBD2B21F204002C0F53 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */; };
+		954C5BBF2B21F7F0002C0F53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */; };
 		956D10E02B1E405E0097567F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D10DF2B1E405E0097567F /* SettingTableViewController.swift */; };
 		F0B9E5AF2B20930700B3B5C0 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E5AE2B20930700B3B5C0 /* Booking.swift */; };
 		F0B9E5B12B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */; };
@@ -94,6 +97,9 @@
 		83EF4C5E2AD47E9300B42A33 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
 		83EF4C622AD4957700B42A33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		954C5BB82B21EB30002C0F53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		956D10DF2B1E405E0097567F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		F0B9E5AE2B20930700B3B5C0 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBookingHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -264,6 +270,9 @@
 				F0B9E5B22B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift */,
 				83EF4C602AD47ECE00B42A33 /* SignUpTableViewController.swift */,
 				956D10DF2B1E405E0097567F /* SettingTableViewController.swift */,
+				954C5BB82B21EB30002C0F53 /* ContactUsViewController.swift */,
+				954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */,
+				954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -430,10 +439,13 @@
 			files = (
 				832B4FAC2AB9C83500F8F705 /* Login.swift in Sources */,
 				F0B9E5AF2B20930700B3B5C0 /* Booking.swift in Sources */,
+				954C5BB92B21EB30002C0F53 /* ContactUsViewController.swift in Sources */,
+				954C5BBF2B21F7F0002C0F53 /* HomeViewController.swift in Sources */,
 				83EF4C612AD47ECE00B42A33 /* SignUpTableViewController.swift in Sources */,
 				832B4FA82AB9C83500F8F705 /* AppDelegate.swift in Sources */,
 				832B4FAA2AB9C83500F8F705 /* SceneDelegate.swift in Sources */,
 				956D10E02B1E405E0097567F /* SettingTableViewController.swift in Sources */,
+				954C5BBD2B21F204002C0F53 /* HomeCollectionViewCell.swift in Sources */,
 				835B44182AD2F14200E9A302 /* DataBase.swift in Sources */,
 				F0B9E5B32B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift in Sources */,
 				F0B9E5B12B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift in Sources */,
@@ -635,7 +647,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CareGuide.CareGuide;
+				PRODUCT_BUNDLE_IDENTIFIER = bh.polytechnic.CareGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -663,7 +675,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CareGuide.CareGuide;
+				PRODUCT_BUNDLE_IDENTIFIER = bh.polytechnic.CareGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
