@@ -8,10 +8,14 @@
 import UIKit
 
 class CreateHLTableViewController: UITableViewController {
+    var hls: [Hospital] = []
+
     struct PropertyKeys {
-        static let unwind = "UnwindToCreatHL"
+        //static let unwind = "UnwindToCreatHL" used down important
+        static let creatHL = "createHLSegue"
+      //  static let editHL = ""
     }
-    var hospital: Hospital?
+    var aBuilding: Hospital?
     
     @IBOutlet weak var hlNameField: UITextField!
     
@@ -34,11 +38,17 @@ class CreateHLTableViewController: UITableViewController {
               let aLocation = hlLocationField.text
               //let timing =
               //let logo =
-              
+              else
+        {
+            return
+        }
         aBuilding = Hospital(logo: <#T##String#>, name: aName, location: aLocation, timing: a, password: aPassword, phoneNumber: aPhone, email: aEmail)
+                
+                //performSegue for unwinddd
+        performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
     }
     
-    //put this method code in the cell view when it is created please
+    //where to put this method code ? cellview?
     func updateHL(hl : Hospital){
         hlNameField.text = hl.name
         hlEmailField.text = hl.email
@@ -48,12 +58,12 @@ class CreateHLTableViewController: UITableViewController {
         //logo
         
     }
-    //needs ajusdments after creating cell view
+    //needs ajusdments after creating cell view THE CELL NAME
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.hlCell, for: indexPath) as! HLViewCell
-        let hl = Hospitals[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.hlCell, for: indexPath) as! HLTableViewCell
+        let hl = hls                                                      [indexPath.row]
         cell.update(hl : hl)
         return cell
     }
