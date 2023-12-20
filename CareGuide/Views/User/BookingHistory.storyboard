@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Oy1-UB-n2f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Oy1-UB-n2f">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Hospital/Lab-->
+        <!--Booking History-->
         <scene sceneID="Iqd-62-o7N">
             <objects>
                 <tableViewController id="PBU-wz-WA0" customClass="PBookinghistoryTableViewController" customModule="CareGuide" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,34 +31,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="h8s-kq-2YN">
-                                            <rect key="frame" x="20" y="12" width="353" height="175"/>
+                                            <rect key="frame" x="20" y="11" width="353" height="177"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nf-pp-QzH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="19"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="19.333333333333332"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-cr-8Mj">
-                                                    <rect key="frame" x="0.0" y="39" width="37.333333333333336" height="19"/>
+                                                    <rect key="frame" x="0.0" y="39.333333333333336" width="37.333333333333336" height="19.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLR-dB-YPE">
-                                                    <rect key="frame" x="0.0" y="78" width="37.333333333333336" height="19"/>
+                                                    <rect key="frame" x="0.0" y="78.666666666666671" width="37.333333333333336" height="19.666666666666671"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYx-cQ-P5c">
-                                                    <rect key="frame" x="0.0" y="117" width="37.333333333333336" height="19"/>
+                                                    <rect key="frame" x="0.0" y="118.33333333333333" width="37.333333333333336" height="19.333333333333329"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPR-bi-fFR">
-                                                    <rect key="frame" x="0.0" y="156" width="37.333333333333336" height="19"/>
+                                                    <rect key="frame" x="0.0" y="157.66666666666666" width="37.333333333333336" height="19.333333333333343"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -88,7 +87,7 @@
                             <outlet property="delegate" destination="PBU-wz-WA0" id="ffy-rv-41o"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Hospital/Lab" id="IXW-IT-8B7"/>
+                    <navigationItem key="navigationItem" title="Booking History" id="IXW-IT-8B7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8o-nQ-EEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

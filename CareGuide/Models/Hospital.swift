@@ -11,13 +11,17 @@ class Hospital {
     var name: String
     var location: String
     var timing: String
-    var description: String
-
-    init(logo: String, name: String, location: String, timing: String, description: String) {
+    var password: String
+    var phoneNumber: String
+    var email: String
+    
+    init(logo: String, name: String, location: String, timing: String,  password: String, phoneNumber: String, email: String) {
         self.logo = logo
         self.name = name
         self.location = location
         self.timing = timing
-        self.description = description
+        self.password = password
+        self.phoneNumber = phoneNumber
+        self.email = email
     }
 }
