@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Photos
 
-class CreateHLTableViewController: UITableViewController {
+class CreateHLTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     var hls: [Hospital] = []
 
     struct PropertyKeys {
@@ -28,24 +30,70 @@ class CreateHLTableViewController: UITableViewController {
     @IBOutlet weak var hlLocationField: UITextField!
     
     
+    @IBOutlet weak var logoBtn: UIButton!
     @IBOutlet weak var isLabSwitch: UISwitch!
     
+    
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    
+    @IBAction func logoAction(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: . actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler : {
+            (action: UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else {
+             let cameraAlert =   UIAlertController(title: "Camera not found", message: "Check camera access", preferredStyle: .alert)
+                cameraAlert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            }
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler : {
+            (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil
+                                           ))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    //error
+  /*  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+       let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        logoImageView.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
+} */
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+        
     @IBAction func doneCreating(_ sender: Any) {
         guard let aName = hlNameField.text,
               let aPassword = hlPasswordField,
         let aEmail = hlEmailField.text,
               let aPhone = hlPhoneField.text,
-              let aLocation = hlLocationField.text
-              //let timing =
-              //let logo =
+              let aLocation = hlLocationField.text,
+              //let timing =,
+                //let isLab =,
+                let aLogo = logoImageView.image
               else
         {
             return
         }
-        aBuilding = Hospital(logo: <#T##String#>, name: aName, location: aLocation, timing: a, password: aPassword, phoneNumber: aPhone, email: aEmail)
+        //logo? isLab?
+       // error aBuilding = Hospital(name: aName, location: aLocation, timing: , password: aPassword, phoneNumber: aPhone, email: aEmail, isLab:,  logo: aLogo)
                 
                 //performSegue for unwinddd
-        performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
+       // performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
     }
     
     //where to put this method code ? cellview?
@@ -55,22 +103,41 @@ class CreateHLTableViewController: UITableViewController {
         hlPhoneField.text = hl.phoneNumber
         hlLocationField.text = hl.location
         //timings
-        //logo
+        //islab?
+        
+        logoImageView.isHidden = hl.logo
         
     }
-    //needs ajusdments after creating cell view THE CELL NAME
+    /*needs ajusdments after creating cell view THE CELL NAME
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.hlCell, for: indexPath) as! HLTableViewCell
-        let hl = hls                                                      [indexPath.row]
+        let hl = hls[indexPath.row]
         cell.update(hl : hl)
         return cell
-    }
+    } */
 
+    func checkPermission(){
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+            PHPhotoLibrary.requestAuthorization({(status: PHAuthorizationStatus) -> Void in () })
+        }
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            
+        }else {
+            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+        }
+    }
+    func requestAuthorizationHandler(status : PHAuthorizationStatus){
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            print("Access granted to use Photo Library")
+        } else {
+            print("We do not have access to your photos")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+checkPermission()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

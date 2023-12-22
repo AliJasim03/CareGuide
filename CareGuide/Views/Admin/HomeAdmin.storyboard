@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pmw-dm-ZBY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pmw-dm-ZBY">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -201,8 +202,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRy-Uw-Hir">
-                                                    <rect key="frame" x="46" y="28" width="113" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRy-Uw-Hir">
+                                                    <rect key="frame" x="46" y="28" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -212,13 +213,30 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="logoAction:" destination="mVv-Id-M0p" eventType="touchUpInside" id="zNA-oD-dOL"/>
+                                                    </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jsB-UQ-3ql">
+                                                    <rect key="frame" x="217" y="7" width="79" height="63"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="jsB-UQ-3ql" secondAttribute="bottom" constant="7" id="5Jd-jg-KMR"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="top" constant="7" id="8Op-um-Lgh"/>
                                                 <constraint firstItem="uRy-Uw-Hir" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="topMargin" constant="17" id="CKL-0y-qON"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="129" id="Dkb-JU-3Or"/>
+                                                <constraint firstAttribute="bottom" secondItem="jsB-UQ-3ql" secondAttribute="bottom" constant="7" id="Dks-4w-LGa"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="55" id="FW8-Vv-nWI"/>
+                                                <constraint firstAttribute="trailing" secondItem="jsB-UQ-3ql" secondAttribute="trailing" constant="97" id="Ik9-Uh-x9G"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="uRy-Uw-Hir" secondAttribute="bottom" constant="17" id="biZ-bT-N82"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="top" constant="7" id="ciU-Yz-Dnd"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="129" id="fyi-Ei-KoH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="285" id="nXr-UK-GDl"/>
                                                 <constraint firstItem="uRy-Uw-Hir" firstAttribute="leading" secondItem="cES-uB-TCT" secondAttribute="leadingMargin" constant="26" id="p2g-gl-WFm"/>
+                                                <constraint firstAttribute="bottom" secondItem="jsB-UQ-3ql" secondAttribute="bottom" constant="7" id="vDf-cU-hHu"/>
+                                                <constraint firstAttribute="trailing" secondItem="jsB-UQ-3ql" secondAttribute="trailing" constant="97" id="wQA-qe-ELA"/>
+                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="top" constant="7" id="xGH-kL-egw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -244,13 +262,15 @@
                         <outlet property="hlNameField" destination="stX-Xw-qJh" id="cMN-tx-56C"/>
                         <outlet property="hlPhoneField" destination="DRu-RY-EeY" id="38O-H9-kWl"/>
                         <outlet property="isLabSwitch" destination="DDH-aL-kQJ" id="0qe-L6-KBy"/>
+                        <outlet property="logoBtn" destination="m7S-6n-sIg" id="V3Y-fU-Jce"/>
+                        <outlet property="logoImageView" destination="jsB-UQ-3ql" id="NCb-pB-yPz"/>
                         <outlet property="passwordField" destination="WYb-Je-4aB" id="0Yv-VZ-v7n"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdD-cG-PYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="xjq-ld-Qu0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5773.2824427480909" y="-682.3943661971831"/>
+            <point key="canvasLocation" x="5771.7557251908393" y="-682.3943661971831"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="lrd-th-LPD">
@@ -395,7 +415,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
