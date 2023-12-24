@@ -13,11 +13,13 @@ class HLTableViewCell: UITableViewCell {
     
     //updating the editing
     // it will not be red after connecting it
+    
     func updateHL(hl : Hospital){
-        hlNameField.text = hl.name
-        hlEmailField.text = hl.email
-        hlPhoneField.text = hl.phoneNumber
-        hlLocationField.text = hl.location
+      //  hlNameField.text = hl.name
+       // hlEmailField.text = hl.email
+       // hlPhoneField.text = hl.phoneNumber
+       // hlLocationField.text = hl.location
+        
         //timings
         //logo
         

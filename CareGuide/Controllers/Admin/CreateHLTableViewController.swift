@@ -30,6 +30,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var hlLocationField: UITextField!
     
     
+    
     @IBOutlet weak var logoBtn: UIButton!
     @IBOutlet weak var isLabSwitch: UISwitch!
     
@@ -105,18 +106,18 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         //timings
         //islab?
         
-        logoImageView.isHidden = hl.logo
+       // logoImageView.isHidden = hl.logo
         
     }
-    /*needs ajusdments after creating cell view THE CELL NAME
+   // needs ajusdments after creating cell view THE CELL NAME
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.hlCell, for: indexPath) as! HLTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cell.hlCell.rawValue, for: indexPath) as! HLTableViewCell
         let hl = hls[indexPath.row]
-        cell.update(hl : hl)
+        cell.updateHL(hl : hl)
         return cell
-    } */
+    }
 
     func checkPermission(){
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
@@ -138,6 +139,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     override func viewDidLoad() {
         super.viewDidLoad()
 checkPermission()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

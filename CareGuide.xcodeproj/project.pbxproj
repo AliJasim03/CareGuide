@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04FF38042B377E23004769D7 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF38032B377E23004769D7 /* TimeTableViewController.swift */; };
 		832B4FA82AB9C83500F8F705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B4FA72AB9C83500F8F705 /* AppDelegate.swift */; };
 		832B4FAA2AB9C83500F8F705 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B4FA92AB9C83500F8F705 /* SceneDelegate.swift */; };
 		832B4FAC2AB9C83500F8F705 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B4FAB2AB9C83500F8F705 /* Login.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04FF38032B377E23004769D7 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		832B4FA42AB9C83500F8F705 /* CareGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		832B4FA72AB9C83500F8F705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		832B4FA92AB9C83500F8F705 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				83DD18052B0F3C6900306AE5 /* AdminHomeViewController.swift */,
 				F047E92E2B32D21200D8D814 /* CreateHLTableViewController.swift */,
 				F00BFB3F2B3319D90089D11F /* HLTableViewCell.swift */,
+				04FF38032B377E23004769D7 /* TimeTableViewController.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				835B44182AD2F14200E9A302 /* DataBase.swift in Sources */,
 				F0B9E5B32B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift in Sources */,
 				F0B9E5B12B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift in Sources */,
+				04FF38042B377E23004769D7 /* TimeTableViewController.swift in Sources */,
 				8387B6282AE81D25006BBBFD /* Hospital.swift in Sources */,
 				83DD18062B0F3C6900306AE5 /* AdminHomeViewController.swift in Sources */,
 				F0B9E5B52B209EB600B3B5C0 /* Keys.swift in Sources */,
