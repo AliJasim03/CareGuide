@@ -61,7 +61,7 @@ class Login: UIViewController {
                 self.view.window!.rootViewController = newVc        }
         })
         
-        DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Hospital",
+        DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Hospitals",
                                     completion: {
             isUser in if isUser{
 
