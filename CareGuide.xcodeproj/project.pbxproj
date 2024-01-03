@@ -42,6 +42,7 @@
 		954C5BBD2B21F204002C0F53 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */; };
 		954C5BBF2B21F7F0002C0F53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */; };
 		956D10E02B1E405E0097567F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D10DF2B1E405E0097567F /* SettingTableViewController.swift */; };
+		9C58F7CF2B45C39D001509FF /* MedicalPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */; };
 		F0B9E5AF2B20930700B3B5C0 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E5AE2B20930700B3B5C0 /* Booking.swift */; };
 		F0B9E5B12B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */; };
 		F0B9E5B32B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E5B22B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift */; };
@@ -101,6 +102,7 @@
 		954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		956D10DF2B1E405E0097567F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalPackageViewController.swift; sourceTree = "<group>"; };
 		F0B9E5AE2B20930700B3B5C0 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBookingHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		F0B9E5B22B209C1E00B3B5C0 /* PBookinghistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBookinghistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				954C5BB82B21EB30002C0F53 /* ContactUsViewController.swift */,
 				954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */,
 				954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */,
+				9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				832B4FAC2AB9C83500F8F705 /* Login.swift in Sources */,
 				F0B9E5AF2B20930700B3B5C0 /* Booking.swift in Sources */,
 				954C5BB92B21EB30002C0F53 /* ContactUsViewController.swift in Sources */,
+				9C58F7CF2B45C39D001509FF /* MedicalPackageViewController.swift in Sources */,
 				954C5BBF2B21F7F0002C0F53 /* HomeViewController.swift in Sources */,
 				83EF4C612AD47ECE00B42A33 /* SignUpTableViewController.swift in Sources */,
 				832B4FA82AB9C83500F8F705 /* AppDelegate.swift in Sources */,
@@ -642,6 +646,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -670,6 +675,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
