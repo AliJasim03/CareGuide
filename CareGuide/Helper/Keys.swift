@@ -8,4 +8,5 @@
 import Foundation
 enum Cell : String{
     case PBookingCell
+    case packageCell
 }
