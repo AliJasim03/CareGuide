@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class Hospital {
     var name: String
     var location: String
@@ -13,10 +14,10 @@ class Hospital {
     var password: String
     var phoneNumber: String
     var email: String
-    var isLab : String
-  //  var logo : UIImage
+    var isLab : Bool
+  var logo : UIImage
     
-    init(name: String, location: String, timing: String,  password: String, phoneNumber: String, email: String, isLab: String)/*+logo*/ {
+    init(name: String, location: String, timing: String,password: String, phoneNumber: String, email: String, isLab: Bool, logo : UIImage)/*+logo*/ {
         self.name = name
         self.location = location
         self.timing = timing
@@ -24,6 +25,6 @@ class Hospital {
         self.phoneNumber = phoneNumber
         self.email = email
         self.isLab = isLab
-        //   self.logo = logo
+         self.logo = logo
     }
 }

@@ -11,9 +11,9 @@ class HLTableViewCell: UITableViewCell {
 
     //add labels for hospital details here and connect them
     
-    //updating the editing
-    // it will not be red after connecting it
     
+    //updating the editing MEHTOD, waiting for the code
+    // it will not be red after connecting it
     func updateHL(hl : Hospital){
       //  hlNameField.text = hl.name
        // hlEmailField.text = hl.email

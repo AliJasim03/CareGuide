@@ -31,13 +31,15 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     
     @IBOutlet weak var hlLocationField: UITextField!
     
-    
-    
+        
     @IBOutlet weak var logoBtn: UIButton!
     @IBOutlet weak var isLabSwitch: UISwitch!
     
     
     @IBOutlet weak var logoImageView: UIImageView!
+    
+    
+    
     
     
     @IBAction func logoAction(_ sender: Any) {
@@ -68,7 +70,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                                            ))
         self.present(actionSheet, animated: true, completion: nil)
     }
-    //error
+    //error waiting for run
 /*    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         logoImageView.image = image
@@ -81,21 +83,21 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         
     @IBAction func doneCreating(_ sender: Any) {
         guard let aName = hlNameField.text,
-              let aPassword = hlPasswordField,
-        let aEmail = hlEmailField.text,
+              let aPassword = hlPasswordField.text,
+              let aEmail = hlEmailField.text,
               let aPhone = hlPhoneField.text,
               let aLocation = hlLocationField.text,
-              let timing = selectedTime,
-                //let isLab =,
-                let aLogo = logoImageView.image
+              let aTiming = selectedTime,
+              let aLogo = logoImageView.image
+            
+        
               else
         {
             return
         }
-        //logo? isLab?
-       // error aBuilding = Hospital(name: aName, location: aLocation, timing: , password: aPassword, phoneNumber: aPhone, email: aEmail, isLab:,  logo: aLogo)
-                
-                //performSegue for unwinddd
+            aBuilding = Hospital(name: aName, location: aLocation, timing: aTiming, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn,  logo: aLogo)
+      
+                //performSegue for unwindd
        // performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,6 +109,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             }
         }
     }
+    
+    
     
     //where to put this method code ? cellview?
     func updateHL(hl : Hospital){
@@ -148,6 +152,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             print("We do not have access to your photos")
         }
     }
+    
+
     
     
     override func viewDidLoad() {

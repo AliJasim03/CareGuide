@@ -98,6 +98,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <progressView key="tableFooterView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="REo-w7-zmO">
+                            <rect key="frame" x="0.0" y="599" width="393" height="4"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </progressView>
                         <sections>
                             <tableViewSection id="r7B-TO-h3I">
                                 <cells>
@@ -160,6 +164,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDH-aL-kQJ">
                                                     <rect key="frame" x="301" y="23" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="isLab:" destination="mVv-Id-M0p" eventType="valueChanged" id="b4m-Fa-QpI"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -257,14 +264,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailField" destination="R6W-z7-p40" id="ZPg-K9-5d6"/>
+                        <outlet property="hlEmailField" destination="R6W-z7-p40" id="gbT-TC-THs"/>
                         <outlet property="hlLocationField" destination="259-aX-JZD" id="pgB-Vr-Coe"/>
                         <outlet property="hlNameField" destination="stX-Xw-qJh" id="cMN-tx-56C"/>
+                        <outlet property="hlPasswordField" destination="WYb-Je-4aB" id="c7d-BF-RY1"/>
                         <outlet property="hlPhoneField" destination="DRu-RY-EeY" id="38O-H9-kWl"/>
                         <outlet property="isLabSwitch" destination="DDH-aL-kQJ" id="0qe-L6-KBy"/>
                         <outlet property="logoBtn" destination="m7S-6n-sIg" id="V3Y-fU-Jce"/>
                         <outlet property="logoImageView" destination="jsB-UQ-3ql" id="NCb-pB-yPz"/>
-                        <outlet property="passwordField" destination="WYb-Je-4aB" id="0Yv-VZ-v7n"/>
+                        <outlet property="progressBarr" destination="REo-w7-zmO" id="OqE-4Q-VkR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdD-cG-PYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
