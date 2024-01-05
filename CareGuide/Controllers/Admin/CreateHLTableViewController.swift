@@ -17,6 +17,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         static let creatHL = "createHLSegue"
       //  static let editHL = ""
     }
+    var selectedTime: String?
+    
     var aBuilding: Hospital?
     
     @IBOutlet weak var hlNameField: UITextField!
@@ -67,7 +69,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         self.present(actionSheet, animated: true, completion: nil)
     }
     //error
-  /*  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+/*    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         logoImageView.image = image
         
@@ -83,7 +85,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         let aEmail = hlEmailField.text,
               let aPhone = hlPhoneField.text,
               let aLocation = hlLocationField.text,
-              //let timing =,
+              let timing = selectedTime,
                 //let isLab =,
                 let aLogo = logoImageView.image
               else
@@ -96,6 +98,15 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                 //performSegue for unwinddd
        // performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TimingSegue" {
+            if let timeTableViewController = segue.destination as? TimeTableViewController {
+                selectedTime = timeTableViewController.time
+                    
+                
+            }
+        }
+    }
     
     //where to put this method code ? cellview?
     func updateHL(hl : Hospital){
@@ -104,6 +115,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         hlPhoneField.text = hl.phoneNumber
         hlLocationField.text = hl.location
         //timings
+        
         //islab?
         
        // logoImageView.isHidden = hl.logo
@@ -136,6 +148,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             print("We do not have access to your photos")
         }
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 checkPermission()

@@ -9,6 +9,7 @@ import UIKit
 
 class TimeTableViewController: UITableViewController {
 //needs a choice after running and testing
+    var time : String? = ""
     
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     
@@ -24,38 +25,21 @@ class TimeTableViewController: UITableViewController {
     
     //which method?
     
-    @IBAction func switchStatus(_ sender: UISwitch) /*-> Bool */{
-       
-        var fullTime : Bool
-        
+    @IBAction func switchStatus(_ sender: UISwitch){
+               
         if sender.isOn {
-            fullTime =  true
+            time = "24 Hours"
             toTimePicker.isEnabled = false
             fromTimePicker.isEnabled = false
             
         }else{
-            fullTime = false
             toTimePicker.isEnabled = true
             fromTimePicker.isEnabled = true
+            time = (fromTimeTxtField.text ?? "") + ("") + (toTimeTxtField.text ?? "")
         }
-        //return fullTime
     }
     
-    func switchS() -> Bool{
-        var fullTime : Bool
-        
-        if fullTimeSwitch.isOn {
-            fullTime =  true
-            toTimePicker.isEnabled = false
-            fromTimePicker.isEnabled = false
-            
-        }else{
-            fullTime = false
-            toTimePicker.isEnabled = true
-            fromTimePicker.isEnabled = true
-        }
-        return fullTime
-    }
+
     
     //fromTimeFunc
     func fromTimePick(){
@@ -63,7 +47,7 @@ class TimeTableViewController: UITableViewController {
         toolBar.sizeToFit()
         
         //bar button
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(fromDoneBtnPressed))
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil /*self*/, action: #selector(fromDoneBtnPressed))
                                       
         toolBar.setItems([doneBtn], animated: true)
         
@@ -78,8 +62,16 @@ class TimeTableViewController: UITableViewController {
         
     }
     @objc func fromDoneBtnPressed(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        
+        fromTimeTxtField.text = dateFormatter.string(from: fromTimePicker.date)
+        self.view.endEditing(true)
+        
+        /* or only this
         fromTimeTxtField.text = "\(fromTimePicker.timeZone)" //timeZone?
         self.view.endEditing(true)
+         */
     }
     
     
@@ -93,7 +85,7 @@ class TimeTableViewController: UITableViewController {
         toolBar.sizeToFit()
         
         //bar button
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(toDoneBtnPressed))
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil /*self? */, action: #selector(toDoneBtnPressed))
                                       
         toolBar.setItems([doneBtn], animated: true)
         
@@ -108,8 +100,16 @@ class TimeTableViewController: UITableViewController {
         
     }
     @objc func toDoneBtnPressed(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        
+        toTimeTxtField.text = dateFormatter.string(from: toTimePicker.date)
+        self.view.endEditing(true)
+        
+        /*or only this
         toTimeTxtField.text = "\(toTimePicker.timeZone)" //timeZone?
         self.view.endEditing(true)
+         */
     }
     
     
