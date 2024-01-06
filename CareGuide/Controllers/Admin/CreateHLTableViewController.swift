@@ -187,6 +187,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
               let aTiming = selectedTime,
               let aLogo = logoImageView.image
             
+                
         
               else
         {
@@ -195,11 +196,15 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             aBuilding = Hospital(name: aName, location: aLocation, timing: aTiming, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn,  logo: aLogo)
         //adding it to the array depend on the type
         
+        
         if aBuilding?.isLab == false{
             hospitalsArray.append(aBuilding!)
         }else{
             labsArray.append(aBuilding!)
         }
+        
+        let successAlert =   UIAlertController(title: "Account Created", message: "Account Created Successfully", preferredStyle: .alert)
+           successAlert.addAction(UIAlertAction(title: "OK", style: .default))
     }
     
     

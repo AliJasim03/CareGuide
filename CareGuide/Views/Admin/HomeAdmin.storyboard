@@ -99,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <progressView key="tableFooterView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="REo-w7-zmO">
-                            <rect key="frame" x="0.0" y="599" width="393" height="4"/>
+                            <rect key="frame" x="0.0" y="599.00000000000011" width="393" height="4"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </progressView>
                         <sections>
@@ -456,7 +456,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="InE-VF-CoW"/>
+        <segue reference="1Ha-y0-JQz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

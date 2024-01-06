@@ -16,7 +16,7 @@ class PBookingHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var Locationlbl: UILabel!
     
     func configure(booking: Booking){
-        statusLbl.text = "Hi"
+        statusLbl.text = booking.status.rawValue
         nameLbl.text = booking.name
         testTypeLbl.text = booking.testType
         dateLbl.text = booking.date

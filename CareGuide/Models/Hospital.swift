@@ -17,7 +17,7 @@ class Hospital {
     var isLab : Bool
   var logo : UIImage
     
-    init(name: String, location: String, timing: String,password: String, phoneNumber: String, email: String, isLab: Bool, logo : UIImage)/*+logo*/ {
+    init(name: String, location: String, timing: String,password: String, phoneNumber: String, email: String, isLab: Bool, logo : UIImage) {
         self.name = name
         self.location = location
         self.timing = timing
