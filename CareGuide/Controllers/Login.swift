@@ -46,12 +46,11 @@ class Login: UIViewController {
         })
 
         
-        //TODO: fix the animation as it executes very fast if possible
         
-        //TODO: add the logic to check different type of user
         if Auth.auth().currentUser?.uid == nil {
             return
         }
+        print(Auth.auth().currentUser?.uid)
         DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
                                     completion: {
             isUser in if isUser{
