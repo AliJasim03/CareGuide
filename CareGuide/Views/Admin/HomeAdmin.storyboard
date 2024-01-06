@@ -119,6 +119,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
                                                         <action selector="ll:" destination="xjq-ld-Qu0" eventType="editingDidEnd" id="B9A-Ue-hiO"/>
+                                                        <action selector="updateProgressBar:" destination="mVv-Id-M0p" eventType="editingDidEnd" id="VP9-h7-CzU"/>
                                                     </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password (at least 8 Characters)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-Je-4aB">
@@ -126,24 +127,36 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="updateProgressBar:" destination="mVv-Id-M0p" eventType="editingDidEnd" id="o6x-bm-SMz"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DRu-RY-EeY">
                                                     <rect key="frame" x="32" y="209" width="329" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="updateProgressBar:" destination="mVv-Id-M0p" eventType="editingDidEnd" id="3lH-S9-8gR"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6W-z7-p40">
                                                     <rect key="frame" x="32" y="90" width="329" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="updateProgressBar:" destination="mVv-Id-M0p" eventType="editingDidEnd" id="fmp-Hh-gp9"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="259-aX-JZD">
                                                     <rect key="frame" x="32" y="274" width="329" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="updateProgressBar:" destination="mVv-Id-M0p" eventType="editingDidEnd" id="qCm-gy-EVp"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -259,11 +272,12 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="kFU-Js-OtE"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="MDI-1p-QFK">
                             <connections>
-                                <action selector="doneCreating:" destination="mVv-Id-M0p" id="aaK-P1-bvX"/>
+                                <action selector="doneBtnPressed:" destination="mVv-Id-M0p" id="8PN-ck-Ip5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBtn" destination="MDI-1p-QFK" id="kOm-dC-3Zw"/>
                         <outlet property="hlEmailField" destination="R6W-z7-p40" id="gbT-TC-THs"/>
                         <outlet property="hlLocationField" destination="259-aX-JZD" id="pgB-Vr-Coe"/>
                         <outlet property="hlNameField" destination="stX-Xw-qJh" id="cMN-tx-56C"/>
@@ -272,6 +286,7 @@
                         <outlet property="isLabSwitch" destination="DDH-aL-kQJ" id="0qe-L6-KBy"/>
                         <outlet property="logoBtn" destination="m7S-6n-sIg" id="V3Y-fU-Jce"/>
                         <outlet property="logoImageView" destination="jsB-UQ-3ql" id="NCb-pB-yPz"/>
+                        <outlet property="progressBar" destination="REo-w7-zmO" id="yJJ-h3-yId"/>
                         <outlet property="progressBarr" destination="REo-w7-zmO" id="OqE-4Q-VkR"/>
                     </connections>
                 </tableViewController>
