@@ -16,6 +16,12 @@ class DataBase {
         
     let db = Firestore.firestore()
     
+    public static func createInstance() -> DataBase {
+           let instance = DataBase()
+           // Additional setup logic if needed
+           return instance
+       }
+    
     func createUser(_ selfViewController:UIViewController,email:String,password:String,completion: @escaping (Error?) -> Void){
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password,completion:{authResult,error in
             guard error == nil else{
@@ -85,6 +91,26 @@ class DataBase {
             }
         }
     }
+    
+    func addSampleDataIfNeeded() {
+           guard DataBase.bookings.isEmpty else {
+               return
+           }
+
+           let user = User(email: "ahmed@gmail.com", fullName: "Ahmed Ali", dateOfBirth: "20/02/2002", gender: "male", phoneNumber: "39765432")
+        let booking = Booking(status: .cancelled, name: "IBN alnafees", testType: "Blood Type", date: "20/02/23", location: "manama", price: "7BD", patient: "Ahmed Ali")
+
+           saveUserData(user: user)
+           DataBase.bookings.append(booking)
+       }
+    func getUser() -> User? {
+           let user = User(email: "Zahra@gmail.com", fullName: "Zahra Jasim", dateOfBirth: "06/04/1999", gender: "Female", phoneNumber: "39765432")
+           return user
+       }
+    func getBooking() -> Booking? {
+        let booking = Booking(status: .cancelled, name: "IBN alnafees", testType: "Blood Type", date: "20/02/23", location: "manama", price: "7BD", patient: "Ahmed Ali")
+            return booking
+        }
     // sample data to check booking history for patient
     static var bookings =  [Booking]()
     
@@ -93,10 +119,14 @@ class DataBase {
                 bookings = sampleBookings
             }
     }
+    
+    
     static var sampleBookings = [
-        Booking(status: .cancelled, name: "IBN Al Nafees" , testType: "blood", date: "2022-03-11" , location: "Manama"),
-        Booking(status: .upcoming, name: "IBN Al Nafees", testType: "pressure", date: "2022-03-11" , location: "Manama")
+        Booking(status: .cancelled, name: "IBN Al Nafees" , testType: "blood", date: "2022-03-11" , location: "Manama", price: "7BD", patient: "Ahmed Ali"),
+        Booking(status: .upcoming, name: "IBN Al Nafees", testType: "pressure", date: "2022-03-11" , location: "Manama", price: "7BD", patient: "Zahra Jasim")
 
     ]
     
 }
+
+

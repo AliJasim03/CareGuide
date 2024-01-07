@@ -51,14 +51,35 @@ class PBookinghistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let alert = UIAlertController(title: "Cancel Booking", message: "Are you sure you want to cancel this appointment?", preferredStyle: .alert)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            // Add a cancel action
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            // Add a confirm action
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
+                // User confirmed, cancel the booking
+                self?.cancelBooking(at: indexPath)
+            }))
+            
+            // Present the alert
+            present(alert, animated: true, completion: nil)
+        }
     }
-
+    
+    func cancelBooking(at indexPath: IndexPath) {
+        // Remove the booking from your data source
+        bookings.remove(at: indexPath.row)
+        // Assuming DataBase.bookings is your data source
+        DataBase.bookings.remove(at: indexPath.row)
+        
+        // Delete the corresponding row from the table view
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Cancel"
+    }
+}
 
     /*
     // Override to support rearranging the table view.
@@ -85,4 +106,4 @@ class PBookinghistoryTableViewController: UITableViewController {
     }
     */
 
-}
+
