@@ -94,8 +94,8 @@ class DataBase {
             }
     }
     static var sampleBookings = [
-        Booking(status: .cancelled, name: "IBN Al Nafees" , testType: "blood", date: "2022-03-11" , location: "Manama"),
-        Booking(status: .upcoming, name: "IBN Al Nafees", testType: "pressure", date: "2022-03-11" , location: "Manama")
+        Booking(status: .cancelled, name: "IBN Al Nafees" , testType: "blood", date: "2022-03-11" , location: "Manama", Price: "7bd"),
+        Booking(status: .upcoming, name: "IBN Al Nafees", testType: "pressure", date: "2022-03-11" , location: "Manama", Price: "7bd")
 
     ]
     

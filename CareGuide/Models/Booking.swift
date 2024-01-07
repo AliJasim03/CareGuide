@@ -13,13 +13,15 @@ class Booking {
     var testType : String
     var date : String
     var location : String
+    var Price : String
     
-    init(status: Status, name : String, testType: String, date: String, location: String) {
+    init(status: Status, name : String, testType: String, date: String, location: String, Price: String) {
         self.status = status
         self.name = name
         self.testType = testType
         self.date = date
         self.location = location
+        self.Price = Price
     }
 }
 enum Status {
