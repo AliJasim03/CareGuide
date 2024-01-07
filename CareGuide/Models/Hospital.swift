@@ -15,8 +15,7 @@ class Hospital: Equatable, Codable {
    
    var name: String
    var location: String
-   var timingFrom: String
-   var timingTo: String
+    var timing: String
    var is247: Bool
    var password: String
    var phoneNumber: String
@@ -24,11 +23,11 @@ class Hospital: Equatable, Codable {
    var isLab : Bool
    var logo : String
    
-   init(name: String, location: String, timingFrom: String, timingTo: String, is247: Bool, password: String, phoneNumber: String, email: String, isLab: Bool, logo : String) {
+   init(name: String, location: String,timing: String
+, is247: Bool, password: String, phoneNumber: String, email: String, isLab: Bool, logo : String) {
        self.name = name
        self.location = location
-       self.timingFrom = timingFrom
-       self.timingTo = timingTo
+       self.timing = timing
        self.is247 = is247
        self.password = password
        self.phoneNumber = phoneNumber

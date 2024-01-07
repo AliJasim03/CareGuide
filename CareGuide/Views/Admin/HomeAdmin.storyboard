@@ -477,7 +477,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home Page" id="V9f-5c-Zis">
-                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="dmz-YH-G6g"/>
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="dmz-YH-G6g">
+                            <connections>
+                                <action selector="signOutTapped:" destination="Nn6-Kn-ygC" id="tCR-qW-WsC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xfd-lb-pyv">
                             <connections>
                                 <segue destination="mVv-Id-M0p" kind="show" identifier="CreateHLSegue" id="wxP-mG-mzE"/>

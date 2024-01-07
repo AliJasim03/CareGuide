@@ -27,7 +27,7 @@ class Booking {
     }
 }
 enum Status : String {
-    case Cancelled
-    case Compleleted
-    case Upcoming
+    case cancelled
+    case compleleted
+    case upcoming
 }

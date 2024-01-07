@@ -15,8 +15,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     //    var hls: [Hospital] { return hospitalsArray + labsArray }
     
     var selectedHospital: Hospital?
-    var timingFrom: String = ""
-    var timingTo: String  = ""
+    var timing: String = ""
+
     var is247: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,7 +210,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         }
         if let aLogo = logoImageView.image, let logoData = aLogo.jpegData(compressionQuality: 1) {
             let logoBase64 = logoData.base64EncodedString()
-            aBuilding = Hospital(name: aName, location: aLocation, timingFrom: self.timingFrom,timingTo: self.timingTo, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn, logo: logoBase64)
+            aBuilding = Hospital(name: aName, location: aLocation, timing:self.timing, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn, logo: logoBase64)
         } else {
             return
         }

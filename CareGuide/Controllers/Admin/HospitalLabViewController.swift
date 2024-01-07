@@ -7,7 +7,7 @@
 
 // This line imports the UIKit framework, which provides essential components for building iOS applications.
 import UIKit
-
+import FirebaseAuth
 /* This line defines a Swift class named HospitalLabViewController that inherits from UIViewController and conforms to the UITableViewDataSource and UITableViewDelegate protocols. This means that instances of this class can be used as a view controller and will be responsible for providing data and handling events for a table view. */
 
 class HospitalLabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -78,7 +78,7 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
         if let data = selectedData[indexPath.row] as? Hospital {
             cell.nameLabel.text = data.name
             cell.locationLabel.text = "Location: \(data.location)"
-            cell.TimingsLbl.text = "Hours: \(data.timingFrom) - \(data.timingTo)"
+            cell.TimingsLbl.text = "Hours: \(data.timing)"
             // Set the common image for both hospitals and labs
             cell.Img1.image = UIImage(named: data.logo)
         }
@@ -130,6 +130,21 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
        }
     }
 
+    @IBAction func signOutTapped(_ sender: Any) {
+        do{
+            try FirebaseAuth.Auth.auth().signOut()
+        } catch {
+            print("Error Signing out")
+        }
+        UserDefaults.standard.removeObject(forKey: "admin_uid_key")
+        UserDefaults.standard.synchronize()
+        let storyboard = UIStoryboard(
+            name: "Main",
+            bundle: nil
+        )
+        let newVc = storyboard.instantiateViewController(withIdentifier: "Main")
+        self.view.window!.rootViewController = newVc
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "CreateHLSegue" {
            if let destinationVC = segue.destination as? CreateHLTableViewController {
