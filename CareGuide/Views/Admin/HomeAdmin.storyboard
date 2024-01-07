@@ -32,10 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <progressView key="tableFooterView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="REo-w7-zmO">
-                            <rect key="frame" x="0.0" y="599" width="393" height="4"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </progressView>
                         <sections>
                             <tableViewSection id="r7B-TO-h3I">
                                 <cells>
@@ -102,7 +98,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-dg-9Yw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-dg-9Yw">
                                                     <rect key="frame" x="46" y="28" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -117,10 +113,10 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="6Ut-dg-9Yw" secondAttribute="bottom" constant="17" id="9fq-zM-9rr"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6Ut-dg-9Yw" secondAttribute="bottom" constant="16" id="9fq-zM-9rr"/>
                                                 <constraint firstItem="6Ut-dg-9Yw" firstAttribute="leading" secondItem="7X2-Lt-3fi" secondAttribute="leadingMargin" constant="26" id="HJR-Ma-szX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6Ut-dg-9Yw" secondAttribute="trailing" constant="285" id="Ine-6Y-NY1"/>
-                                                <constraint firstItem="6Ut-dg-9Yw" firstAttribute="top" secondItem="7X2-Lt-3fi" secondAttribute="topMargin" constant="17" id="wmk-PR-TCe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6Ut-dg-9Yw" secondAttribute="trailing" constant="201" id="Ine-6Y-NY1"/>
+                                                <constraint firstItem="6Ut-dg-9Yw" firstAttribute="top" secondItem="7X2-Lt-3fi" secondAttribute="topMargin" constant="16" id="wmk-PR-TCe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -131,7 +127,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Working Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-io-8kD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-io-8kD">
                                                     <rect key="frame" x="46" y="28" width="199" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -140,9 +136,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="B3A-io-8kD" firstAttribute="leading" secondItem="5ry-EW-m4x" secondAttribute="leadingMargin" constant="26" id="1vd-ed-bVk"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="B3A-io-8kD" secondAttribute="bottom" constant="17" id="XBl-0b-gsH"/>
-                                                <constraint firstItem="B3A-io-8kD" firstAttribute="top" secondItem="5ry-EW-m4x" secondAttribute="topMargin" constant="17" id="iFo-qP-QD6"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="B3A-io-8kD" secondAttribute="trailing" constant="285" id="sXm-lH-Qko"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="B3A-io-8kD" secondAttribute="bottom" constant="16" id="XBl-0b-gsH"/>
+                                                <constraint firstItem="B3A-io-8kD" firstAttribute="top" secondItem="5ry-EW-m4x" secondAttribute="topMargin" constant="16" id="iFo-qP-QD6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="B3A-io-8kD" secondAttribute="trailing" constant="109.66666666666669" id="sXm-lH-Qko"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -181,17 +177,29 @@
                                                 <constraint firstItem="uRy-Uw-Hir" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="topMargin" constant="17" id="CKL-0y-qON"/>
                                                 <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="129" id="Dkb-JU-3Or"/>
                                                 <constraint firstAttribute="bottom" secondItem="jsB-UQ-3ql" secondAttribute="bottom" constant="7" id="Dks-4w-LGa"/>
-                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="55" id="FW8-Vv-nWI"/>
                                                 <constraint firstAttribute="trailing" secondItem="jsB-UQ-3ql" secondAttribute="trailing" constant="97" id="Ik9-Uh-x9G"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="uRy-Uw-Hir" secondAttribute="bottom" constant="17" id="biZ-bT-N82"/>
                                                 <constraint firstItem="jsB-UQ-3ql" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="top" constant="7" id="ciU-Yz-Dnd"/>
-                                                <constraint firstItem="jsB-UQ-3ql" firstAttribute="leading" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="129" id="fyi-Ei-KoH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uRy-Uw-Hir" secondAttribute="trailing" constant="285" id="nXr-UK-GDl"/>
                                                 <constraint firstItem="uRy-Uw-Hir" firstAttribute="leading" secondItem="cES-uB-TCT" secondAttribute="leadingMargin" constant="26" id="p2g-gl-WFm"/>
                                                 <constraint firstAttribute="bottom" secondItem="jsB-UQ-3ql" secondAttribute="bottom" constant="7" id="vDf-cU-hHu"/>
                                                 <constraint firstAttribute="trailing" secondItem="jsB-UQ-3ql" secondAttribute="trailing" constant="97" id="wQA-qe-ELA"/>
                                                 <constraint firstItem="jsB-UQ-3ql" firstAttribute="top" secondItem="cES-uB-TCT" secondAttribute="top" constant="7" id="xGH-kL-egw"/>
                                             </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="Iiv-bm-dZD">
+                                        <rect key="frame" x="0.0" y="581" width="393" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iiv-bm-dZD" id="GPj-q0-Im0">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="REo-w7-zmO">
+                                                    <rect key="frame" x="23" y="26" width="350" height="4"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </progressView>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -203,7 +211,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lab/Hospital" id="9He-nc-gNc">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="kFU-Js-OtE"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="MDI-1p-QFK">
                             <connections>
                                 <action selector="doneBtnPressed:" destination="mVv-Id-M0p" id="8PN-ck-Ip5"/>
@@ -226,7 +233,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdD-cG-PYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="xjq-ld-Qu0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1515" y="-859"/>
+            <point key="canvasLocation" x="1513.7404580152672" y="-859.15492957746483"/>
         </scene>
         <!--Time Table View Controller-->
         <scene sceneID="lrd-th-LPD">
@@ -447,7 +454,6 @@
                                             <outlet property="TimingsLbl" destination="xGL-ef-RCS" id="m6U-5a-xCn"/>
                                             <outlet property="locationLabel" destination="p4j-vv-gDC" id="FCE-L0-ZGG"/>
                                             <outlet property="nameLabel" destination="Mto-GY-vEk" id="JEu-V9-ILV"/>
-                                            <segue destination="mVv-Id-M0p" kind="show" id="J3C-rh-w16"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -474,7 +480,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Sign out" id="dmz-YH-G6g"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xfd-lb-pyv">
                             <connections>
-                                <segue destination="mVv-Id-M0p" kind="show" id="ZlQ-K5-SUu"/>
+                                <segue destination="mVv-Id-M0p" kind="show" identifier="CreateHLSegue" id="wxP-mG-mzE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -487,9 +493,6 @@
             <point key="canvasLocation" x="398" y="-859"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ZlQ-K5-SUu"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="AlHilalIMG" width="1600" height="1600"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>

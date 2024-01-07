@@ -18,7 +18,7 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
     
     var hospitals: [Hospital] = AppData.shared.hospitals
     var selectedData: [Any] = []
-    
+    var selectedHospitalName: String?
     // Outlet for the UITableView in the storyboard
     
     /* This line declares an outlet for a UITableView named tableView. This outlet is connected to a table view in the storyboard, allowing the code to interact with and manipulate the table view. */
@@ -78,7 +78,7 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
         if let data = selectedData[indexPath.row] as? Hospital {
             cell.nameLabel.text = data.name
             cell.locationLabel.text = "Location: \(data.location)"
-            cell.TimingsLbl.text = "Hours: \(data.timing)"
+            cell.TimingsLbl.text = "Hours: \(data.timingFrom) - \(data.timingTo)"
             // Set the common image for both hospitals and labs
             cell.Img1.image = UIImage(named: data.logo)
         }
@@ -122,4 +122,31 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
             present(alertController, animated: true, completion: nil)
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       if let cell = tableView.cellForRow(at: indexPath) as? CommonCell {
+           self.selectedHospitalName = cell.nameLabel.text
+
+       }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "CreateHLSegue" {
+           if let destinationVC = segue.destination as? CreateHLTableViewController {
+               destinationVC.navigationItem.title = "Add Hospital/Label"
+               print("Preparing for segue")
+
+           }
+           
+       }else if segue.identifier == "EditHLSegue" {
+           if let destinationVC = segue.destination as? CreateHLTableViewController,
+                   let selectedHospitalName = selectedHospitalName,
+                   let selectedHospital = hospitals.first(where: { $0.name == selectedHospitalName }) {
+               destinationVC.navigationItem.title = "Edit Hospital/Label"
+                    destinationVC.selectedHospital = selectedHospital
+                }
+       }
+    }
+    
+
 }

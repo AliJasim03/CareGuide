@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VJw-7a-h5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VJw-7a-h5E">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="4d5-wj-8PF" kind="relationship" relationship="viewControllers" id="d8x-f0-XWM"/>
-                        <segue destination="an4-RR-kP7" kind="relationship" relationship="viewControllers" id="eNN-Ud-p6s"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPj-In-BoZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -35,16 +34,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Gg-fU-4Vl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1089.3129770992366" y="12.67605633802817"/>
-        </scene>
-        <!--SettingAdmin-->
-        <scene sceneID="HBf-Xm-OKQ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SettingAdmin" id="an4-RR-kP7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d8d-X3-n2M"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hHx-jY-8rh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="809" y="136"/>
         </scene>
     </scenes>
 </document>

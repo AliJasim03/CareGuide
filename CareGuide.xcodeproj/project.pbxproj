@@ -19,7 +19,6 @@
 		832B4FCB2AB9C83700F8F705 /* CareGuideUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B4FCA2AB9C83700F8F705 /* CareGuideUITestsLaunchTests.swift */; };
 		832E4AE52AD3241200066292 /* AdminTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832E4AE42AD3241200066292 /* AdminTabBar.storyboard */; };
 		832E4AE72AD3243600066292 /* HomeAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832E4AE62AD3243600066292 /* HomeAdmin.storyboard */; };
-		832E4AE92AD3246500066292 /* SettingAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832E4AE82AD3246500066292 /* SettingAdmin.storyboard */; };
 		834E705E2ACD4BBB00A02528 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834E705D2ACD4BBB00A02528 /* GoogleService-Info.plist */; };
 		834E70612ACD4D5400A02528 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 834E70602ACD4D5400A02528 /* FirebaseAuth */; };
 		834E70632ACD4D5400A02528 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 834E70622ACD4D5400A02528 /* FirebaseDatabase */; };
@@ -95,7 +94,6 @@
 		832B4FCA2AB9C83700F8F705 /* CareGuideUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareGuideUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		832E4AE42AD3241200066292 /* AdminTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminTabBar.storyboard; sourceTree = "<group>"; };
 		832E4AE62AD3243600066292 /* HomeAdmin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeAdmin.storyboard; sourceTree = "<group>"; };
-		832E4AE82AD3246500066292 /* SettingAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingAdmin.storyboard; sourceTree = "<group>"; };
 		834E705D2ACD4BBB00A02528 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		835B43FD2AD05E7A00E9A302 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		835B44172AD2F14200E9A302 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 			children = (
 				832E4AE42AD3241200066292 /* AdminTabBar.storyboard */,
 				832E4AE62AD3243600066292 /* HomeAdmin.storyboard */,
-				832E4AE82AD3246500066292 /* SettingAdmin.storyboard */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				835B44282AD2FBBE00E9A302 /* Profile.storyboard in Resources */,
 				835B44342AD3083300E9A302 /* HomeHospital.storyboard in Resources */,
 				83EF4C5F2AD47E9300B42A33 /* SignUp.storyboard in Resources */,
-				832E4AE92AD3246500066292 /* SettingAdmin.storyboard in Resources */,
 				83C8FD2A2B4A7E5A006F230F /* MedicalPackages.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
