@@ -148,7 +148,7 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "CreateHLSegue" {
            if let destinationVC = segue.destination as? CreateHLTableViewController {
-               destinationVC.navigationItem.title = "Add Hospital/Label"
+               destinationVC.navigationItem.title = "Add Hospital"
                print("Preparing for segue")
 
            }
