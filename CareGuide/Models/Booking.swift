@@ -22,8 +22,8 @@ class Booking {
         self.location = location
     }
 }
-enum Status {
-    case cancelled
-    case compleleted
-    case upcoming
+enum Status : String {
+    case Cancelled
+    case Compleleted
+    case Upcoming
 }

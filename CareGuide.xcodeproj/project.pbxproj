@@ -277,7 +277,6 @@
 				835B44232AD2FB5B00E9A302 /* Home.storyboard */,
 				835B44272AD2FBBE00E9A302 /* Profile.storyboard */,
 				83EF4C5E2AD47E9300B42A33 /* SignUp.storyboard */,
-				F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -291,6 +290,7 @@
 				954C5BB82B21EB30002C0F53 /* ContactUsViewController.swift */,
 				954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */,
 				954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */,
+				F0B9E5B02B2098E400B3B5C0 /* PBookingHistoryTableViewCell.swift */,
 				9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */,
 			);
 			path = User;

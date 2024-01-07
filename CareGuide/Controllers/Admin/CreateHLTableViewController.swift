@@ -10,13 +10,20 @@ import Photos
 
 class CreateHLTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var hls: [Hospital] = []
-
+    var hospitalsArray : [Hospital] = []
+    var labsArray : [Hospital] = []
+    var hls: [Hospital] { return hospitalsArray + labsArray }
+ 
     struct PropertyKeys {
         //static let unwind = "UnwindToCreatHL" used down important
         static let creatHL = "createHLSegue"
       //  static let editHL = ""
     }
+    
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
+    
+    var selectedTime: String?
+    
     var aBuilding: Hospital?
     
     @IBOutlet weak var hlNameField: UITextField!
@@ -29,13 +36,16 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     
     @IBOutlet weak var hlLocationField: UITextField!
     
-    
-    
+        
     @IBOutlet weak var logoBtn: UIButton!
     @IBOutlet weak var isLabSwitch: UISwitch!
     
     
     @IBOutlet weak var logoImageView: UIImageView!
+    
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     
     
     @IBAction func logoAction(_ sender: Any) {
@@ -66,8 +76,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                                            ))
         self.present(actionSheet, animated: true, completion: nil)
     }
-    //error
-  /*  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    //error waiting for run
+/*    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         logoImageView.image = image
         
@@ -77,25 +87,15 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         picker.dismiss(animated: true, completion: nil)
     }
         
-    @IBAction func doneCreating(_ sender: Any) {
-        guard let aName = hlNameField.text,
-              let aPassword = hlPasswordField,
-        let aEmail = hlEmailField.text,
-              let aPhone = hlPhoneField.text,
-              let aLocation = hlLocationField.text,
-              //let timing =,
-                //let isLab =,
-                let aLogo = logoImageView.image
-              else
-        {
-            return
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TimingSegue" {
+            if let timeTableViewController = segue.destination as? TimeTableViewController {
+                selectedTime = timeTableViewController.time
+                                
+            }
         }
-        //logo? isLab?
-       // error aBuilding = Hospital(name: aName, location: aLocation, timing: , password: aPassword, phoneNumber: aPhone, email: aEmail, isLab:,  logo: aLogo)
-                
-                //performSegue for unwinddd
-       // performSegue(withIdentifier: PropertyKeys.unwind, sender: self)
     }
+    
     
     //where to put this method code ? cellview?
     func updateHL(hl : Hospital){
@@ -105,10 +105,9 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         hlLocationField.text = hl.location
         //timings
         //islab?
-        
        // logoImageView.isHidden = hl.logo
-        
     }
+    
    // needs ajusdments after creating cell view THE CELL NAME
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -119,6 +118,48 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         return cell
     }
 
+    
+    
+    @IBAction func updateProgressBar(_ sender: UITextField) {
+        let ratio : Float = 1/5
+        var progress:Float = 0
+    
+        
+        if (hlNameField.text ?? "").count >= 3{
+                progress += ratio
+        }else{
+            let nameAlert =   UIAlertController(title: "Invalid Name ", message: "Please enter valid name", preferredStyle: .alert)
+               nameAlert.addAction(UIAlertAction(title: "OK", style: .default))
+        }
+            
+            if (hlEmailField.text ?? "").contains("@") && (hlEmailField.text ?? "").count >= 6{
+                progress += ratio
+            }else{
+                let emailAlert =   UIAlertController(title: "Invalid Email ", message: "Please enter valid email", preferredStyle: .alert)
+                   emailAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            }
+        
+            if (hlPhoneField.text ?? "").count == 8 || ((hlPhoneField.text ?? "").count >= 8 && (hlPhoneField.text ?? "").filter({ $0 == "+" }).count == 1) {
+                progress += ratio
+            }else{
+                let phoneAlert =   UIAlertController(title: "Invalid Phone ", message: "Please enter valid phone", preferredStyle: .alert)
+                   phoneAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            }
+        if (hlPasswordField.text ?? "").count >= 8 {
+                progress += ratio
+            }else{
+                let passwordAlert =   UIAlertController(title: "Invalid Password ", message: "Please enter valid password", preferredStyle: .alert)
+                   passwordAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            }
+        if (hlLocationField.text ?? "").count >= 15{
+                progress += ratio
+            }
+        else{
+            let locationAlert =   UIAlertController(title: "Invalid Location ", message: "Please enter valid Location", preferredStyle: .alert)
+               locationAlert.addAction(UIAlertAction(title: "OK", style: .default))
+        }
+        progressBar.setProgress(Float(progress), animated: true)
+    }
     func checkPermission(){
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
             PHPhotoLibrary.requestAuthorization({(status: PHAuthorizationStatus) -> Void in () })
@@ -136,9 +177,51 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             print("We do not have access to your photos")
         }
     }
+    
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        guard let aName = hlNameField.text,
+              let aPassword = hlPasswordField.text,
+              let aEmail = hlEmailField.text,
+              let aPhone = hlPhoneField.text,
+              let aLocation = hlLocationField.text,
+              let aTiming = selectedTime,
+              let aLogo = logoImageView.image
+            
+                
+        
+              else
+        {
+            return
+        }
+            aBuilding = Hospital(name: aName, location: aLocation, timing: aTiming, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn,  logo: aLogo)
+        //adding it to the array depend on the type
+        
+        
+        if aBuilding?.isLab == false{
+            hospitalsArray.append(aBuilding!)
+        }else{
+            labsArray.append(aBuilding!)
+        }
+        
+        let successAlert =   UIAlertController(title: "Account Created", message: "Account Created Successfully", preferredStyle: .alert)
+           successAlert.addAction(UIAlertAction(title: "OK", style: .default))
+    }
+    
+    
+    func checkReg(){
+        if progressBar.progress == 1.0{
+            doneBtn.isEnabled = true
+        }else{
+            doneBtn.isEnabled = false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 checkPermission()
+        checkReg()
+        
+        self.progressBar.setProgress(0, animated: false)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
