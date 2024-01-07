@@ -193,7 +193,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         {
             return
         }
-            aBuilding = Hospital(name: aName, location: aLocation, timing: aTiming, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn,  logo: aLogo)
+            aBuilding = Hospital(name: aName, location: aLocation, timing: aTiming, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn,  logo: "aLogo")
         //adding it to the array depend on the type
         
         

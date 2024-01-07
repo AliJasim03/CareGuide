@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class AdminHomeViewController: UIViewController {
+class HospitalHomeViewController: UIViewController {
     @IBOutlet weak var segmentControlOutlet: UISegmentedControl!
     
     @IBAction func segmentControlAction(_ sender: UISegmentedControl) {
@@ -78,7 +78,7 @@ class AdminHomeViewController: UIViewController {
         } catch {
             print("Error Signing out")
         }
-        UserDefaults.standard.removeObject(forKey: "admin_uid_key")
+        UserDefaults.standard.removeObject(forKey: "hospital_uid_key")
         UserDefaults.standard.synchronize()
         let storyboard = UIStoryboard(
             name: "Main",

@@ -15,6 +15,7 @@ import FirebaseCore
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        _ = AppData.shared
         DataBase.load()
         return true
     }

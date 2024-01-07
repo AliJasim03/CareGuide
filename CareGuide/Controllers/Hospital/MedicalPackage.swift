@@ -7,7 +7,7 @@
 
 import Foundation
 
-class medicalPackage : AdminHomeViewController {
+class medicalPackage : HospitalHomeViewController {
     var medicalPackageName : String = ""
     var medicalPackageExperationDate : String = ""
     var medicalPackageNumberOfTest : [String] = []

@@ -86,7 +86,6 @@ class Login: UIViewController {
         })
 
         
-        
         if Auth.auth().currentUser?.uid == nil {
             return
         }

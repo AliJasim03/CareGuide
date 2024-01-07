@@ -7,7 +7,7 @@
 
 import Foundation
 
-class medicalTest : AdminHomeViewController {
+class medicalTest : HospitalHomeViewController {
     var medicalTestName : String = ""
     var medicalTestExpirationDate : String = ""
     var medicalTestPrice : Double = 0.00

@@ -6,8 +6,13 @@
 //
 
 import Foundation
-import UIKit
-class Hospital {
+
+class Hospital: Equatable, Codable  {
+    
+    static func == (lhs: Hospital, rhs: Hospital) -> Bool {
+        lhs.name == rhs.name
+    }
+    
     var name: String
     var location: String
     var timing: String
@@ -15,9 +20,9 @@ class Hospital {
     var phoneNumber: String
     var email: String
     var isLab : Bool
-  var logo : UIImage
+    var logo : String
     
-    init(name: String, location: String, timing: String,password: String, phoneNumber: String, email: String, isLab: Bool, logo : UIImage) {
+    init(name: String, location: String, timing: String,password: String, phoneNumber: String, email: String, isLab: Bool, logo : String) {
         self.name = name
         self.location = location
         self.timing = timing
@@ -25,6 +30,6 @@ class Hospital {
         self.phoneNumber = phoneNumber
         self.email = email
         self.isLab = isLab
-         self.logo = logo
+        self.logo = logo
     }
 }
