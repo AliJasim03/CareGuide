@@ -318,6 +318,9 @@
 				9CDA7D482B46CB5200746C7F /* MedicalPackageTableViewCell.swift */,
 				9CDA7D4C2B46FE0300746C7F /* SelectTestViewController.swift */,
 				83C8FD352B4AB293006F230F /* HospitalHomeViewController.swift */,
+				83C8FD372B4AB35F006F230F /* HHistoryTableViewController.swift */,
+				99C8DEF92B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift */,
+				99C8DF042B49C29D00EB1CDB /* HHViewViewController.swift */,
 			);
 			path = Hospital;
 			sourceTree = "<group>";
@@ -328,12 +331,9 @@
 				83C8FD2D2B4A84C4006F230F /* CommonCell.swift */,
 				83C8FD2B2B4A8324006F230F /* HospitalLabViewController.swift */,
 				9CDA7D4A2B46E26400746C7F /* Alert.swift */,
-				83C8FD372B4AB35F006F230F /* HHistoryTableViewController.swift */,
 				F047E92E2B32D21200D8D814 /* CreateHLTableViewController.swift */,
 				F00BFB3F2B3319D90089D11F /* HLTableViewCell.swift */,
 				04FF38032B377E23004769D7 /* TimeTableViewController.swift */,
-				99C8DEF92B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift */,
-				99C8DF042B49C29D00EB1CDB /* HHViewViewController.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
