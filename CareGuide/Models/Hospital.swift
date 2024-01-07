@@ -22,9 +22,9 @@ class Hospital: Equatable, Codable {
     var email: String
     var isLab : Bool
     var logo : String
-    
+    var uid:String
     init(name: String, location: String,timing: String
-         , is247: Bool, password: String, phoneNumber: String, email: String, isLab: Bool, logo : String) {
+         , is247: Bool, password: String, phoneNumber: String, email: String, isLab: Bool, logo : String,uid:String) {
         self.name = name
         self.location = location
         self.timing = timing
@@ -34,6 +34,7 @@ class Hospital: Equatable, Codable {
         self.email = email
         self.isLab = isLab
         self.logo = logo
+        self.uid  = uid
     }
 }
 

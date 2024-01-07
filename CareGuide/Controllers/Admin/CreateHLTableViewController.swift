@@ -176,7 +176,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             let passwordAlert =   UIAlertController(title: "Invalid Password ", message: "Please enter valid password", preferredStyle: .alert)
             passwordAlert.addAction(UIAlertAction(title: "OK", style: .default))
         }
-        if (hlLocationField.text ?? "").count >= 15{
+        if (hlLocationField.text ?? "").count >= 5{
             progress += ratio
         }
         else{
@@ -184,6 +184,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             locationAlert.addAction(UIAlertAction(title: "OK", style: .default))
         }
         progressBar.setProgress(Float(progress), animated: true)
+        checkReg()
     }
     
     func checkPermission(){
@@ -219,7 +220,14 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         }
         if let aLogo = logoImageView.image, let logoData = aLogo.jpegData(compressionQuality: 1) {
             let logoBase64 = logoData.base64EncodedString()
-            aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: isLabSwitch.isOn, logo: logoBase64)
+            DataBase.db.createHospital(self, email: aEmail, password: aPassword, completion: { uid, error in
+                guard let uid = uid, error == nil else {
+                    return
+                }
+                self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64,uid:uid)
+                DataBase.db.saveHopsital(hospital: self.aBuilding!)
+            })
+          
         } else {
             return
         }
@@ -246,5 +254,10 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
 
     @IBAction func unwindToCreateScreen(segue: UIStoryboardSegue) {
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedTime = self.selectedTime{
+            TimeSelectedLabel.text = selectedTime
+        }
     }
 }

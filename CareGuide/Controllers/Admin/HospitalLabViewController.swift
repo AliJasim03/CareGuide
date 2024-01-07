@@ -80,6 +80,24 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
             cell.locationLabel.text = "Location: \(data.location)"
             cell.TimingsLbl.text = "Hours: \(data.timing)"
             // Set the common image for both hospitals and labs
+            DispatchQueue.main.async {
+               if let decodedData = Data(base64Encoded: data.logo) {
+                   if let logoImage = UIImage(data: decodedData) {
+                       print(data.uid)
+                       cell.Img1.image = logoImage
+                       cell.Img1.contentMode = .scaleAspectFit
+                       cell.Img1.setNeedsDisplay()
+                   } else {
+                       cell.Img1.image = UIImage(named: "Image")
+                   }
+               } else {
+                   cell.Img1.image = UIImage(named: "Image")
+               }
+            }
+
+
+        
+
             cell.Img1.image = UIImage(named: data.logo)
         }
         

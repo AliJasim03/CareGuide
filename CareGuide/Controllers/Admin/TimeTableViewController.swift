@@ -9,7 +9,7 @@ import UIKit
 
 class TimeTableViewController: UITableViewController {
 //needs a choice after running and testing
-    var time : String? = ""
+    var time : String?
     
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     
