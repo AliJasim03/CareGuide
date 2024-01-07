@@ -11,13 +11,53 @@ import FirebaseFirestore
 class Login: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet var topConstaint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(
+           self,
+           selector: #selector(self.keyboardWillShow),
+           name: UIResponder.keyboardWillShowNotification,
+           object: nil)
+
+        NotificationCenter.default.addObserver(
+           self,
+           selector: #selector(self.keyboardWillHide),
+           name: UIResponder.keyboardWillHideNotification,
+           object: nil)
     }
     
-    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+       if emailTextField.isEditing || passwordTextField.isEditing {
+           adjustConstraintForKeyboard(show: true, notification: notification)
+       }
+    }
+
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+       adjustConstraintForKeyboard(show: false, notification: notification)
+    }
+
+    func adjustConstraintForKeyboard(show: Bool, notification: NSNotification) {
+       guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+       let keyboardHeight = keyboardSize.height
+       let keyboardDuration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+       let keyboardCurve = UIView.AnimationCurve(rawValue: notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! Int)!
+
+       if show {
+           topConstaint.constant = 0
+       } else {
+           topConstaint.constant = 30
+       }
+
+       let animator = UIViewPropertyAnimator(duration: keyboardDuration, curve: keyboardCurve) { [weak self] in
+           self?.view.layoutIfNeeded()
+       }
+
+       animator.startAnimation()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
           
@@ -46,12 +86,10 @@ class Login: UIViewController {
         })
 
         
-        //TODO: fix the animation as it executes very fast if possible
-        
-        //TODO: add the logic to check different type of user
         if Auth.auth().currentUser?.uid == nil {
             return
         }
+        print(Auth.auth().currentUser?.uid)
         DataBase.db.checkUserType(uid: Auth.auth().currentUser!.uid,userType: "Users",
                                     completion: {
             isUser in if isUser{

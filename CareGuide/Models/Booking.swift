@@ -26,8 +26,8 @@ class Booking {
         self.patient = patient
     }
 }
-enum Status {
-    case cancelled
-    case compleleted
-    case upcoming
+enum Status : String {
+    case Cancelled
+    case Compleleted
+    case Upcoming
 }
