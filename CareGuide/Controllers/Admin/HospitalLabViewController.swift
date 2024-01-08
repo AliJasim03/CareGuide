@@ -84,7 +84,6 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
             DispatchQueue.main.async {
                 if let decodedData = Data(base64Encoded: data.logo) {
                     if let logoImage = UIImage(data: decodedData) {
-                        print(data.uid)
                         cell.Img1.image = logoImage
                         cell.Img1.contentMode = .scaleAspectFit
                         cell.Img1.setNeedsDisplay()

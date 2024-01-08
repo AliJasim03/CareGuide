@@ -223,7 +223,6 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     
     
     @IBAction func doneBtnPressed(_ sender: Any) {
-        print("lol")
 
         guard let aName = hlNameField.text,
               let aPassword = hlPasswordField.text,
@@ -266,7 +265,6 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                     
                 }) }else if editMode  {
                     // Edit the selected hospital
-                    print("lol")
                     self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64, uid: selectedHospital!.uid)
                     
                     AppData.shared.hospitals[selectedHospitalIndex ?? -1] = aBuilding!
