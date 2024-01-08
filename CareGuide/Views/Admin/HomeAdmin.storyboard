@@ -236,6 +236,7 @@
                         <outlet property="logoBtn" destination="m7S-6n-sIg" id="V3Y-fU-Jce"/>
                         <outlet property="logoImageView" destination="jsB-UQ-3ql" id="NCb-pB-yPz"/>
                         <outlet property="progressBar" destination="REo-w7-zmO" id="yJJ-h3-yId"/>
+                        <segue destination="xjq-ld-Qu0" kind="unwind" identifier="backToView" unwindAction="unwindToViewScreenWithSegue:" id="p56-6u-l1A"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdD-cG-PYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -483,6 +484,7 @@
                                             <outlet property="TimingsLbl" destination="xGL-ef-RCS" id="m6U-5a-xCn"/>
                                             <outlet property="locationLabel" destination="p4j-vv-gDC" id="FCE-L0-ZGG"/>
                                             <outlet property="nameLabel" destination="Mto-GY-vEk" id="JEu-V9-ILV"/>
+                                            <segue destination="mVv-Id-M0p" kind="show" identifier="EditHLSegue" id="BkW-4A-G6b"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -522,9 +524,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlV-Kz-BJA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="398" y="-859"/>
+            <point key="canvasLocation" x="503" y="-806"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="BkW-4A-G6b"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="AlHilalIMG" width="1600" height="1600"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>

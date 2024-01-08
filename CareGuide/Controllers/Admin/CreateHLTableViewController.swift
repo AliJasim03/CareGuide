@@ -15,19 +15,13 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     //    var hls: [Hospital] { return hospitalsArray + labsArray }
     
     var selectedHospital: Hospital?
-
+    var editMode : Bool = false
     var is247: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         checkPermission()
         checkReg()
-        if let selectedHospital = selectedHospital{
-            print(selectedHospital.name)
-            print(selectedHospital.isLab)
-            print(selectedHospital.email)
-            print(selectedHospital.location)
-            
-        }
+        
         self.progressBar.setProgress(0, animated: false)
         
         // Uncomment the following line to preserve selection between presentations
@@ -39,7 +33,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     var selectedTime: String?
-    
+    var selectedHospitalIndex: Int?
     var aBuilding: Hospital?
     
     @IBOutlet weak var hlNameField: UITextField!
@@ -66,11 +60,20 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     
     
     @IBAction func isLabChanged(_ sender: Any) {
-        if isLabSwitch.isOn {
-            self.navigationItem.title = "Add Lab"
-        }else{
-            self.navigationItem.title = "Add Hospital"
+        if !editMode{
+            if isLabSwitch.isOn {
+                self.navigationItem.title = "Add Lab"
+            }else{
+                self.navigationItem.title = "Add Hospital"
+            }
+        }else {
+            if isLabSwitch.isOn {
+                self.navigationItem.title = "Edit Lab"
+            }else{
+                self.navigationItem.title = "Edit Hospital"
+            }
         }
+        
     }
     
     
@@ -118,6 +121,11 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             if let timeTableViewController = segue.destination as? TimeTableViewController {
                 selectedTime = timeTableViewController.time
             }
+        }else if segue.identifier == "backToView"{
+            if let hospitalLabViewController = segue.destination as? HospitalLabViewController {
+                hospitalLabViewController.selectedData = AppData.shared.hospitals
+                hospitalLabViewController.tableView.reloadData()
+            }
         }
     }
     
@@ -126,8 +134,16 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     func updateHL(hl : Hospital){
         hlNameField.text = hl.name
         hlEmailField.text = hl.email
+        hlPasswordField.text = hl.password
         hlPhoneField.text = hl.phoneNumber
         hlLocationField.text = hl.location
+        TimeSelectedLabel.text = hl.timing
+        selectedTime = hl.timing
+        if let decodedData = Data(base64Encoded: hl.logo) {
+            if let logoImage = UIImage(data: decodedData) {
+                logoImageView.image = logoImage
+            }
+        }
         //timings
         //islab?
         // logoImageView.isHidden = hl.logo
@@ -207,40 +223,72 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     
     
     @IBAction func doneBtnPressed(_ sender: Any) {
+        print("lol")
+
         guard let aName = hlNameField.text,
               let aPassword = hlPasswordField.text,
               let aEmail = hlEmailField.text,
               let aPhone = hlPhoneField.text,
               let aLocation = hlLocationField.text,
               let aTiming = selectedTime
-            
+                
         else
         {
             return
         }
         if let aLogo = logoImageView.image, let logoData = aLogo.jpegData(compressionQuality: 1) {
             let logoBase64 = logoData.base64EncodedString()
-            DataBase.db.createHospital(self, email: aEmail, password: aPassword, completion: { uid, error in
-                guard let uid = uid, error == nil else {
-                    return
+            if !editMode{
+                DataBase.db.createHospital(self, email: aEmail, password: aPassword, completion: { uid, error in
+                    guard let uid = uid, error == nil else {
+                        // Handle error
+                        return
+                    }
+                    self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64, uid: uid)
+                    
+                    
+                    if let aBuilding = self.aBuilding {
+                        print("saved to local file, and db")
+                        AppData.shared.hospitals.append(aBuilding)
+                        AppData.shared.saveToFile()
+                        DataBase.db.saveHopsital(hospital: aBuilding)
+                        let successAlert = UIAlertController(title: "Account Created", message: "Account Created Successfully", preferredStyle: .alert)
+                        successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                            self.performSegue(withIdentifier: "backToView", sender: self)
+                        }))
+                        self.present(successAlert, animated: true, completion: {
+                            self.performSegue(withIdentifier: "backToView", sender: self)
+                        })
+                        self.performSegue(withIdentifier: "backToView", sender: self)
+                        
+                        
+                    }
+                    
+                }) }else if editMode  {
+                    // Edit the selected hospital
+                    print("lol")
+                    self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64, uid: selectedHospital!.uid)
+                    
+                    AppData.shared.hospitals[selectedHospitalIndex ?? -1] = aBuilding!
+                    AppData.shared.saveToFile()
+                    DataBase.db.saveHopsital(hospital: aBuilding!)
+                    let successAlert = UIAlertController(title: "Account Updated", message: "Account Updated Successfully", preferredStyle: .alert)
+                    successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        self.performSegue(withIdentifier: "backToView", sender: self)
+                    }))
+                    self.present(successAlert, animated: true, completion: {
+                        self.performSegue(withIdentifier: "backToView", sender: self)
+                    })
+                    self.performSegue(withIdentifier: "backToView", sender: self)
                 }
-                self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64,uid:uid)
-                DataBase.db.saveHopsital(hospital: self.aBuilding!)
-            })
-          
+            
         } else {
             return
         }
-        //adding it to the array depend on the type
         
-        if let aBuilding = aBuilding{
-            AppData.shared.hospitals.append(aBuilding)
-            AppData.shared.saveToFile()
-            
-        }
         
-        let successAlert =   UIAlertController(title: "Account Created", message: "Account Created Successfully", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        
     }
     
     
@@ -251,13 +299,21 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             doneBtn.isEnabled = false
         }
     }
-
+    
     @IBAction func unwindToCreateScreen(segue: UIStoryboardSegue) {
-
+        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         if let selectedTime = self.selectedTime{
             TimeSelectedLabel.text = selectedTime
         }
+        if let selectedHospital = self.selectedHospital{
+            updateHL(hl: selectedHospital)
+            updateProgressBar(UITextField())
+             selectedHospitalIndex = AppData.shared.hospitals.firstIndex(where: { $0 == self.selectedHospital })
+        
+        }
+        
     }
 }

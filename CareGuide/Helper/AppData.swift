@@ -12,12 +12,12 @@ class AppData {
   var hospitals = [Hospital]()
 
   private init() {
-      loadFromFile()
+      loadHospitalsFromFile()
   }
 
-  private func loadFromFile() {
+  public func loadHospitalsFromFile() {
       let decoder = PropertyListDecoder()
-      if let data = try? Data(contentsOf: fileURL()),
+      if let data = try? Data(contentsOf: fileHopspitalsURL()),
          let decodedHospitals = try? decoder.decode([Hospital].self, from: data) {
           hospitals = decodedHospitals
       }else {
@@ -36,7 +36,7 @@ class AppData {
       let encoder = PropertyListEncoder()
       if let encoded = try? encoder.encode(hospitals) {
           do {
-              try encoded.write(to: fileURL())
+              try encoded.write(to: fileHopspitalsURL())
               print("Successfully wrote to file!")
           } catch {
               print("Error writing to file: \(error)")
@@ -44,7 +44,7 @@ class AppData {
       }
   }
 
-  private func fileURL() -> URL {
+  private func fileHopspitalsURL() -> URL {
       let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
       let fileName = "hospitals.plist"
       return documentsUrl.appendingPathComponent(fileName)
