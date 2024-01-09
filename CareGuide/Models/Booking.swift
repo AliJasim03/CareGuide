@@ -26,6 +26,7 @@ class Booking {
         self.patient = patient
     }
 }
+//enumaration for Bookings 3 states
 enum Status : String {
     case cancelled
     case compleleted

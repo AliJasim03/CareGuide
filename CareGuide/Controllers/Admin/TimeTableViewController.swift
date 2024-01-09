@@ -8,14 +8,14 @@
 import UIKit
 
 class TimeTableViewController: UITableViewController {
-//needs a choice after running and testing
+//Variables
     var time : String?
     
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     
     @IBOutlet weak var toTimePicker: UIDatePicker!
 
-    //constraint needed for txt fields
+    
     @IBOutlet weak var toTimeTxtField: UITextField!
     
     
@@ -23,7 +23,7 @@ class TimeTableViewController: UITableViewController {
     
     @IBOutlet weak var fullTimeSwitch: UISwitch!
     
-    //which method?
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class TimeTableViewController: UITableViewController {
     }
 
 
-    //fromTimeFunc
+    //fromTime function that will display a toolbar to choose the open hours starting time
     func fromTimePick(){
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -106,7 +106,7 @@ class TimeTableViewController: UITableViewController {
     
     
     
-    //toTime func
+    //toTime func that will show a toolbar for selecting the finishing working time
     
     func toTimePick(){
         let toolBar = UIToolbar()

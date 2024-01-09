@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class CreateHLTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateHLTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     //    var hospitalsArray : [Hospital] = []
     //    var labsArray : [Hospital] = []
@@ -21,6 +21,13 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         super.viewDidLoad()
         checkPermission()
         checkReg()
+        
+        //this is for alerts to be called depending on the textfield clicked
+        hlNameField.delegate = self
+        hlEmailField.delegate = self
+        hlPhoneField.delegate = self
+        hlLocationField.delegate = self
+        hlPasswordField.delegate = self
         
         self.progressBar.setProgress(0, animated: false)
         
@@ -57,7 +64,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var progressBar: UIProgressView!
     
     
-    
+    //Method to that will change the title of the screen depend on if it is a lab or hospital, and if it was adding or editing
     
     @IBAction func isLabChanged(_ sender: Any) {
         if !editMode{
@@ -76,7 +83,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         
     }
     
-    
+    //when click on uploading a logo picture, imagePickerController will be created then, actionsheet will be created to hold the options.
     @IBAction func logoAction(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -105,6 +112,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                                            ))
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
+    //Here is selecting the logo image and then  shown in logoImageView, the picker will no longer shown
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             logoImageView.image = image
@@ -112,15 +121,17 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         picker.dismiss(animated: true, completion: nil)
     }
     
+    // if cancelled to add logo picture
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+    //segue method that will get the time selected from TimeTableViewController then assign it in the selectedTime variable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TimingSegue" {
             if let timeTableViewController = segue.destination as? TimeTableViewController {
                 selectedTime = timeTableViewController.time
             }
+            //But if the segue is backToView it will go the screen that shows the hospitals and labs
         }else if segue.identifier == "backToView"{
             if let hospitalLabViewController = segue.destination as? HospitalLabViewController {
                 hospitalLabViewController.selectedData = AppData.shared.hospitals
@@ -130,7 +141,9 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     }
     
     
-    //where to put this method code ? cellview?
+
+    
+//code for edit, that will retrive the hospital information again
     func updateHL(hl : Hospital){
         hlNameField.text = hl.name
         hlEmailField.text = hl.email
@@ -144,9 +157,7 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                 logoImageView.image = logoImage
             }
         }
-        //timings
-        //islab?
-        // logoImageView.isHidden = hl.logo
+       
     }
     
     // needs ajusdments after creating cell view THE CELL NAME
@@ -160,7 +171,8 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
     //    }
     
     
-    
+    // The progressBar updating method, it also contains validation with Alert Messages.
+   
     @IBAction func updateProgressBar(_ sender: UITextField) {
         let ratio : Float = 1/5
         var progress:Float = 0
@@ -169,39 +181,52 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         if (hlNameField.text ?? "").count >= 3{
             progress += ratio
         }else{
-            let nameAlert =   UIAlertController(title: "Invalid Name ", message: "Please enter valid name", preferredStyle: .alert)
-            nameAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            showAlert(title: "Invalid Name", message: "Please enter valid name")
+       
         }
         
         if (hlEmailField.text ?? "").contains("@") && (hlEmailField.text ?? "").count >= 6{
             progress += ratio
         }else{
-            let emailAlert =   UIAlertController(title: "Invalid Email ", message: "Please enter valid email", preferredStyle: .alert)
-            emailAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            showAlert(title: "Invalid Email", message: "Please enter valid Email")
         }
         
-        if (hlPhoneField.text ?? "").count == 8 || ((hlPhoneField.text ?? "").count >= 8 && (hlPhoneField.text ?? "").filter({ $0 == "+" }).count == 1) {
-            progress += ratio
-        }else{
-            let phoneAlert =   UIAlertController(title: "Invalid Phone ", message: "Please enter valid phone", preferredStyle: .alert)
-            phoneAlert.addAction(UIAlertAction(title: "OK", style: .default))
-        }
         if (hlPasswordField.text ?? "").count >= 8 {
             progress += ratio
         }else{
-            let passwordAlert =   UIAlertController(title: "Invalid Password ", message: "Please enter valid password", preferredStyle: .alert)
-            passwordAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            showAlert(title: "Invalid Password", message: "Please enter valid Password")
+
         }
+
+        if (hlPhoneField.text ?? "").count == 8 || ((hlPhoneField.text ?? "").count >= 8 && (hlPhoneField.text ?? "").filter({ $0 == "+" }).count == 1) {
+            progress += ratio
+        }else{
+            showAlert(title: "Invalid Phone", message: "Please enter valid Phone")
+     
+        }
+        
         if (hlLocationField.text ?? "").count >= 5{
             progress += ratio
         }
         else{
-            let locationAlert =   UIAlertController(title: "Invalid Location ", message: "Please enter valid Location", preferredStyle: .alert)
-            locationAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            showAlert(title: "Invalid Location", message: "Please enter valid Location")
+     
         }
         progressBar.setProgress(Float(progress), animated: true)
         checkReg()
     }
+    
+    //showAlert method that will be called to show a message box with the passed title and message
+    func showAlert(title: String, message: String){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true, completion : nil)
+        
+    }
+    
+    //Checking Permission for accessing photos
     
     func checkPermission(){
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
@@ -213,17 +238,18 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
         }
     }
+    //requesting to access the photo library
     func requestAuthorizationHandler(status : PHAuthorizationStatus){
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            print("Access granted to use Photo Library")
+            showAlert(title: "Access Granted", message: "Access granted to use Photo Library")
         } else {
-            print("We do not have access to your photos")
+            showAlert(title: "Access Denied", message: "We do not have access to your photos")
         }
     }
     
-    
+    // when the doneButton pressed after being enabled, and initilizing the hospital or lab object
     @IBAction func doneBtnPressed(_ sender: Any) {
-
+//getting the input to declare and initialize the constants
         guard let aName = hlNameField.text,
               let aPassword = hlPasswordField.text,
               let aEmail = hlEmailField.text,
@@ -243,14 +269,17 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                         // Handle error
                         return
                     }
+                    //initilaizing the lab/hospital account
                     self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64, uid: uid)
                     
-                    
+                    //saving the created account
                     if let aBuilding = self.aBuilding {
                         print("saved to local file, and db")
                         AppData.shared.hospitals.append(aBuilding)
                         AppData.shared.saveToFile()
                         DataBase.db.saveHopsital(hospital: aBuilding)
+                        
+            //showing message box confirming the creation success
                         let successAlert = UIAlertController(title: "Account Created", message: "Account Created Successfully", preferredStyle: .alert)
                         successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                             self.performSegue(withIdentifier: "backToView", sender: self)
@@ -260,16 +289,17 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
                         })
                         self.performSegue(withIdentifier: "backToView", sender: self)
                         
-                        
                     }
                     
                 }) }else if editMode  {
-                    // Edit the selected hospital
+                    // Edit the selected hospital, getting the new input
                     self.aBuilding = Hospital(name: aName, location: aLocation, timing:aTiming, is247: self.is247, password: aPassword, phoneNumber: aPhone, email: aEmail, isLab: self.isLabSwitch.isOn, logo: logoBase64, uid: selectedHospital!.uid)
-                    
+                    //saving it
                     AppData.shared.hospitals[selectedHospitalIndex ?? -1] = aBuilding!
                     AppData.shared.saveToFile()
                     DataBase.db.saveHopsital(hospital: aBuilding!)
+                    
+                    //showing message box confirming the update
                     let successAlert = UIAlertController(title: "Account Updated", message: "Account Updated Successfully", preferredStyle: .alert)
                     successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                         self.performSegue(withIdentifier: "backToView", sender: self)
@@ -285,11 +315,9 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
         }
         
         
-        
-        
     }
     
-    
+    // the done button will be enabled after the progressbar becomes 1.0
     func checkReg(){
         if progressBar.progress == 1.0{
             doneBtn.isEnabled = true
@@ -297,11 +325,14 @@ class CreateHLTableViewController: UITableViewController, UIImagePickerControlle
             doneBtn.isEnabled = false
         }
     }
-    
+    //unwind segue method
     @IBAction func unwindToCreateScreen(segue: UIStoryboardSegue) {
         
     }
     
+   
+    
+    //function to show the selected time in the label and call the method that retrieve the hospital or lab data, with getting the progressBar progress
     override func viewWillAppear(_ animated: Bool) {
         if let selectedTime = self.selectedTime{
             TimeSelectedLabel.text = selectedTime

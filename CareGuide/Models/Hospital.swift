@@ -6,6 +6,7 @@
 //
 
 import Foundation
+// Hospital Class that has Equatable and Codable protocols and also variables and constructor.
 
 class Hospital: Equatable, Codable {
     
