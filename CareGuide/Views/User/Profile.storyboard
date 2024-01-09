@@ -156,7 +156,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jk0-VK-5sS">
                                 <rect key="frame" x="23" y="411" width="346" height="143"/>
-                                <string key="text">At CareGuide, we've simplified the search for labs and hospitals. We know your health is essential, and finding the right care shouldn't be complicated. Thats why we designed an app that is easy to use and that help to to find what you need in one click of a butotn.</string>
+                                <string key="text">At CareGuide, we've simplified the search for labs and hospitals. We know your health is essential, and finding the right care shouldn't be complicated. Thats why we designed an app that is easy to use and that help to to find what you need in one click of a button.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wC8-bO-UQ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301.5267175572519" y="-375.35211267605638"/>
+            <point key="canvasLocation" x="1202" y="-385"/>
         </scene>
         <!--Contact Us View Controller-->
         <scene sceneID="fEJ-74-6CU">

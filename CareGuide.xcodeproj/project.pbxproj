@@ -47,6 +47,8 @@
 		954C5BBD2B21F204002C0F53 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */; };
 		954C5BBF2B21F7F0002C0F53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */; };
 		956D10E02B1E405E0097567F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D10DF2B1E405E0097567F /* SettingTableViewController.swift */; };
+		957EA1C22B4AEEAD00733881 /* HospitalsHomePageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957EA1C12B4AEEAD00733881 /* HospitalsHomePageTableViewController.swift */; };
+		957EA1C42B4DC22100733881 /* HospitalPackagesTestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957EA1C32B4DC22100733881 /* HospitalPackagesTestsTableViewController.swift */; };
 		99C8DEFA2B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8DEF92B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift */; };
 		99C8DF052B49C29D00EB1CDB /* HHViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8DF042B49C29D00EB1CDB /* HHViewViewController.swift */; };
 		9C58F7CF2B45C39D001509FF /* MedicalPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */; };
@@ -121,6 +123,8 @@
 		954C5BBC2B21F203002C0F53 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		954C5BBE2B21F7F0002C0F53 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		956D10DF2B1E405E0097567F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		957EA1C12B4AEEAD00733881 /* HospitalsHomePageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalsHomePageTableViewController.swift; sourceTree = "<group>"; };
+		957EA1C32B4DC22100733881 /* HospitalPackagesTestsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalPackagesTestsTableViewController.swift; sourceTree = "<group>"; };
 		99C8DEF92B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalBookingsTableViewCell.swift; sourceTree = "<group>"; };
 		99C8DF042B49C29D00EB1CDB /* HHViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHViewViewController.swift; sourceTree = "<group>"; };
 		9C58F7CE2B45C39D001509FF /* MedicalPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalPackageViewController.swift; sourceTree = "<group>"; };
@@ -320,7 +324,9 @@
 				83C8FD352B4AB293006F230F /* HospitalHomeViewController.swift */,
 				83C8FD372B4AB35F006F230F /* HHistoryTableViewController.swift */,
 				99C8DEF92B49A39100EB1CDB /* HospitalBookingsTableViewCell.swift */,
+				957EA1C32B4DC22100733881 /* HospitalPackagesTestsTableViewController.swift */,
 				99C8DF042B49C29D00EB1CDB /* HHViewViewController.swift */,
+				957EA1C12B4AEEAD00733881 /* HospitalsHomePageTableViewController.swift */,
 			);
 			path = Hospital;
 			sourceTree = "<group>";
@@ -518,6 +524,8 @@
 				9CDA7D452B46C82A00746C7F /* MedicalPackage.swift in Sources */,
 				F0B9E5B52B209EB600B3B5C0 /* Keys.swift in Sources */,
 				835B43FE2AD05E7A00E9A302 /* Helper.swift in Sources */,
+				957EA1C42B4DC22100733881 /* HospitalPackagesTestsTableViewController.swift in Sources */,
+				957EA1C22B4AEEAD00733881 /* HospitalsHomePageTableViewController.swift in Sources */,
 				83EF4C632AD4957700B42A33 /* User.swift in Sources */,
 				9CDA7D4D2B46FE0300746C7F /* SelectTestViewController.swift in Sources */,
 				9CDA7D472B46C8D400746C7F /* MedicalTest.swift in Sources */,
