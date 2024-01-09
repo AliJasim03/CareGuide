@@ -11,12 +11,10 @@ import FirebaseAuth
 /* This line defines a Swift class named HospitalLabViewController that inherits from UIViewController and conforms to the UITableViewDataSource and UITableViewDelegate protocols. This means that instances of this class can be used as a view controller and will be responsible for providing data and handling events for a table view. */
 
 class HospitalLabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
     // Arrays to store data for hospitals, labs, and the currently selected data
     
     /* These lines declare three instance variables. hospitals and labs are arrays that will store instances of the Hospital and Lab classes, respectively. selectedData is an array that will be used to store the currently selected data, which could be either hospitals or labs.*/
     
-    var hospitals: [Hospital] = AppData.shared.hospitals
     var selectedData: [Any] = []
     var selectedHospitalName: String?
     // Outlet for the UITableView in the storyboard
@@ -33,25 +31,28 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
         
         /* Sample data for hospitals and labs */
         
-       
+        
         // Initially set selectedData to hospitals and configure the table view
         
-        selectedData = hospitals
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
         tableView.isEditing = false
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        selectedData = AppData.shared.hospitals
+        tableView.reloadData()
+        
+    }
     /* This method is called when the segmented control value changes */
     /* This method is an action associated with a segmented control. It is triggered when the segmented control's value changes. It updates selectedData based on the selected segment (0 for hospitals, 1 for labs) and reloads the table view to reflect the changes. */
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         // Update selectedData based on the selected segment
         if sender.selectedSegmentIndex == 0 {
-            selectedData = hospitals
+            selectedData = AppData.shared.hospitals
         } else if sender.selectedSegmentIndex == 1 {
-            selectedData = hospitals.filter { $0.isLab == true }
+            selectedData = AppData.shared.hospitals.filter { $0.isLab == true }
         }
         // Reload the table view with the updated data
         tableView.reloadData()
@@ -80,6 +81,23 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
             cell.locationLabel.text = "Location: \(data.location)"
             cell.TimingsLbl.text = "Hours: \(data.timing)"
             // Set the common image for both hospitals and labs
+            DispatchQueue.main.async {
+                if let decodedData = Data(base64Encoded: data.logo) {
+                    if let logoImage = UIImage(data: decodedData) {
+                        cell.Img1.image = logoImage
+                        cell.Img1.contentMode = .scaleAspectFit
+                        cell.Img1.setNeedsDisplay()
+                    } else {
+                        cell.Img1.image = UIImage(named: "Image")
+                    }
+                } else {
+                    cell.Img1.image = UIImage(named: "Image")
+                }
+            }
+            
+            
+            
+            
             cell.Img1.image = UIImage(named: data.logo)
         }
         
@@ -87,7 +105,7 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
         // Return the configured cell
         return cell
     }
-
+    
     /* UITableViewDelegate method to handle row deletion */
     /* This method is part of the UITableViewDelegate protocol and is responsible for handling row deletion. It presents an alert controller to confirm the deletion and performs the deletion action if the user confirms. */
     
@@ -102,6 +120,13 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
                     // Remove the hospital from the AppData singleton
                     AppData.shared.hospitals.removeAll(where: { $0 == hospital })
                     AppData.shared.saveToFile()
+                    DataBase.db.db.collection("Hospitals").document(hospital.uid).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            print("Document successfully removed!")
+                        }
+                    }
                 }
                 // Remove the item from the data source (selectedData)
                 self.selectedData.remove(at: indexPath.row)
@@ -109,6 +134,8 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
                 // Update the table view with the new data source
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
+            
+            
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 // Do nothing when cancel is pressed
@@ -122,14 +149,14 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
             present(alertController, animated: true, completion: nil)
         }
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       if let cell = tableView.cellForRow(at: indexPath) as? CommonCell {
-           self.selectedHospitalName = cell.nameLabel.text
-
-       }
+//        if let cell = tableView.cellForRow(at: indexPath) as? CommonCell {
+//            self.selectedHospitalName = cell.nameLabel.text
+//            
+//        }
     }
-
+    
     @IBAction func signOutTapped(_ sender: Any) {
         do{
             try FirebaseAuth.Auth.auth().signOut()
@@ -146,22 +173,29 @@ class HospitalLabViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.window!.rootViewController = newVc
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "CreateHLSegue" {
-           if let destinationVC = segue.destination as? CreateHLTableViewController {
-               destinationVC.navigationItem.title = "Add Hospital/Label"
-               print("Preparing for segue")
-
-           }
-           
-       }else if segue.identifier == "EditHLSegue" {
-           if let destinationVC = segue.destination as? CreateHLTableViewController,
-                   let selectedHospitalName = selectedHospitalName,
-                   let selectedHospital = hospitals.first(where: { $0.name == selectedHospitalName }) {
-               destinationVC.navigationItem.title = "Edit Hospital/Label"
+        if segue.identifier == "CreateHLSegue" {
+            if let destinationVC = segue.destination as? CreateHLTableViewController {
+                destinationVC.navigationItem.title = "Add Hospital"
+                print("Preparing for segue")
+                
+            }
+            
+        }else    if segue.identifier == "EditHLSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow,
+               let cell = tableView.cellForRow(at: indexPath) as? CommonCell,
+               let destinationVC = segue.destination as? CreateHLTableViewController {
+                self.selectedHospitalName = cell.nameLabel.text
+                if let selectedHospitalName = selectedHospitalName,
+                   let selectedHospital = AppData.shared.hospitals.first(where: { $0.name == selectedHospitalName }) {
+                    destinationVC.navigationItem.title = "Edit Hospital"
                     destinationVC.selectedHospital = selectedHospital
+                    destinationVC.editMode = true
                 }
-       }
+            }
+        }    }
+    @IBAction func unwindToViewScreen(segue: UIStoryboardSegue) {
+        
     }
     
-
+    
 }

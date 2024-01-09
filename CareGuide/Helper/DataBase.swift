@@ -40,7 +40,30 @@ class DataBase {
             UserDefaults.standard.set(Auth.auth().currentUser!.uid,forKey: "user_uid_key")
             completion(nil)
         })
+    } 
+    func createHospital(_ selfViewController:UIViewController,email:String,password:String,completion: @escaping (String?, Error?) -> Void){
+       FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password,completion:{ authResult,error in
+           guard error == nil else{
+               if let error = error as? NSError {
+                   print(error)
+                   self.getErrMessage(selfViewController,error: error)
+                   return
+               }else {
+                   Helper.shared.showAlert(Controller: selfViewController, title: "Invalid Sign Up", message: "Check your registration form")
+                   completion(nil, error)
+                   return
+               }
+           }
+           Helper.shared.showAlert(Controller: selfViewController, title: "Acount Created", message: "Account Successfully Created")
+           guard let userId = authResult?.user.uid else {
+               print("No user ID returned from createUser")
+               completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+               return
+           }
+           completion(userId, nil)
+       })
     }
+
     
     func getErrMessage(_ self:UIViewController,error:NSError){
         var title,message : String
@@ -71,6 +94,25 @@ class DataBase {
             ]
             // Add a new user in collection
             db.collection("Users").document("\(Auth.auth().currentUser!.uid)").setData(userData, merge: true)
+            { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+    func saveHopsital(hospital:Hospital){
+            let hospitalData: [String: Any] = [
+                "name": hospital.name,
+                "email": hospital.email,
+                "phoneNumber": hospital.phoneNumber,
+                "location": hospital.location,
+                "isLab": hospital.isLab,
+                "timing": hospital.timing
+            ]
+            // Add a new user in collection
+        db.collection("Hospitals").document(hospital.uid).setData(hospitalData, merge: true)
             { err in
                 if let err = err {
                     print("Error writing document: \(err)")

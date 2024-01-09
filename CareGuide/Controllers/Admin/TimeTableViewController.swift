@@ -8,14 +8,14 @@
 import UIKit
 
 class TimeTableViewController: UITableViewController {
-//needs a choice after running and testing
-    var time : String? = ""
+//Variables
+    var time : String?
     
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     
     @IBOutlet weak var toTimePicker: UIDatePicker!
 
-    //constraint needed for txt fields
+    
     @IBOutlet weak var toTimeTxtField: UITextField!
     
     
@@ -23,10 +23,27 @@ class TimeTableViewController: UITableViewController {
     
     @IBOutlet weak var fullTimeSwitch: UISwitch!
     
-    //which method?
-    
+
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+       //let time = Date()
+        
+//        let formatter = DateFormatter()
+//        formatter.locale = Locale(identifier: "en_gb")
+//        formatter.dateFormat = "HH:mm"
+//        
+//        let fTime = UIDatePicker()
+//        fTime.datePickerMode = .time
+//        fTime.addTarget(self, action: #selector(timePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+//        
+       // fTime.inputView = fTime
+        
+        
+    }
     @IBAction func switchStatus(_ sender: UISwitch){
                
+
         if sender.isOn {
             time = "24 Hours"
             toTimePicker.isEnabled = false
@@ -39,9 +56,20 @@ class TimeTableViewController: UITableViewController {
         }
     }
     
-
+    @IBAction func timeFrom(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        fromTimeTxtField.text = formatter.string(from: fromTimePicker.date)
+    }
     
-    //fromTimeFunc
+    @IBAction func timeTo(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        toTimeTxtField.text = formatter.string(from: toTimePicker.date)
+    }
+
+
+    //fromTime function that will display a toolbar to choose the open hours starting time
     func fromTimePick(){
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -78,7 +106,7 @@ class TimeTableViewController: UITableViewController {
     
     
     
-    //toTime func
+    //toTime func that will show a toolbar for selecting the finishing working time
     
     func toTimePick(){
         let toolBar = UIToolbar()
@@ -114,34 +142,32 @@ class TimeTableViewController: UITableViewController {
     
     
     
+
     
-    
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-       /* let time = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_gb")
-        formatter.dateFormat = "HH:mm"
-        
-        let fTime = UIDatePicker()
-        fTime.datePickerMode = .time
-        fTime.addTarget(self, action: #selector(timePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        
-       // fTime.inputView = fTime
-        
-        */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "saveTime" {
+           let destinationVC = segue.destination as! CreateHLTableViewController
+           configureTime()
+           destinationVC.selectedTime = self.time
+       }
     }
+
+    func configureTime(){
+        if fullTimeSwitch.isOn{
+            self.time = "Open 24 Hours"
+        }else {
+            self.time = "\(fromTimeTxtField.text ?? "00:00") - \(toTimeTxtField.text ?? "00:00")"
+        }
+    }
+
         
-       /* @objc func timePickerValueChanged(sender : UIDatePicker){
+        @objc func timePickerValueChanged(sender : UIDatePicker){
             
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: "en_gb")
             formatter.dateFormat = "HH:mm"
         }
-        */
+        
     
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -152,15 +178,7 @@ class TimeTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
