@@ -1,7 +1,8 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    var selectedUser: User?
+    var bookings: [Booking] = []
     struct Hospital {
         let title: String
         let image: UIImage
@@ -122,5 +123,88 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
        let width = view.frame.size.width
        return CGSize(width: width, height: height)
    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let bookAction = UIContextualAction(style: .normal, title: "Book") { [weak self] (_, _, completionHandler) in
+            self?.showDatePickerView(at: indexPath, completionHandler: completionHandler)
+        }
+        bookAction.backgroundColor = .systemBlue
+        
+        return UISwipeActionsConfiguration(actions: [bookAction])
+    }
+    
+    func showDatePickerView(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
+       
+        let datePickerView = UIView(frame: CGRect(x: 10, y: view.bounds.height, width: view.bounds.width - 20, height: 180))
+        datePickerView.backgroundColor = .white
+        datePickerView.layer.cornerRadius = 10
+
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.frame = CGRect(x: 0, y: 0, width: datePickerView.bounds.width, height: 150)
+
+        
+        let bookButton = UIButton(type: .system)
+        bookButton.setTitle("Book", for: .normal)
+        bookButton.frame = CGRect(x: 10, y: 130, width: datePickerView.bounds.width, height: 40)
+        bookButton.layer.cornerRadius = 10 //
+        bookButton.backgroundColor = .systemBlue
+        bookButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        bookButton.setTitleColor(.white, for: .normal)
+
+        
+        datePickerView.addSubview(datePicker)
+        datePickerView.addSubview(bookButton)
+
+        
+        datePicker.center.x = datePickerView.bounds.width / 2
+        bookButton.center.x = datePickerView.bounds.width / 2
+
+       
+        datePickerView.frame.origin.y = self.view.bounds.height - 240
+
+        
+        view.addSubview(datePickerView)
+        bookButton.addTarget(self, action: #selector(bookButtonTapped(_:)), for: .touchUpInside)
+
+                datePickerView.addSubview(datePicker)
+                datePickerView.addSubview(bookButton)
+
+        
+        UIView.animate(withDuration: 0.5) {
+            datePickerView.frame.origin.y = self.view.bounds.height - 180
+        }
+
+        
+        completionHandler(true)
+    }
+    
+    @objc func bookButtonTapped(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.subviews.last?.frame.origin.y = self.view.bounds.height
+        }) { _ in
+            
+            self.view.subviews.last?.removeFromSuperview()
+        }
+        
+        let selectedHospital = hospitals[currentSegment]
+        let newBooking = Booking(status: .upcoming, name: selectedHospital.title, testType: "Your Test Type", date: "", location: selectedHospital.type, price: "Your Price", include: "", patient: selectedUser)
+
+                
+        
+                bookings.append(newBooking)
+
+                
+                if let historyViewController = tabBarController?.viewControllers?.first as? PBookinghistoryTableViewController {
+                    historyViewController.bookings = bookings
+                    historyViewController.tableView.reloadData()
+                }
+
+    }
+    
 }
+
+
+
 

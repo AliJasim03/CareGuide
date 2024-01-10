@@ -18,7 +18,11 @@ class HospitalBookingsTableViewCell: UITableViewCell {
     
         func configure(booking: Booking){
             Statuslbl.text = "i"
-            patientlbl.text = booking.patient
+            if let patient = booking.patient {
+                patientlbl.text = patient.fullName
+            } else {
+                patientlbl.text = "Unknown Patient"
+            }
             Testlbl.text = booking.testType
             Pricelbl.text = booking.price
             Datelbl.text = booking.date

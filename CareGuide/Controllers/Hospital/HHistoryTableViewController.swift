@@ -100,23 +100,22 @@ class HHistoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Ensure no manual segue is triggered here
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
         performSegue(withIdentifier: "ViewSegue", sender: selectedBooking)
     }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewSegue" {
-            if let destinationVC = segue.destination as? HHViewViewController,
-               let selectedBooking = sender as? Booking {
-                destinationVC.selectedBooking = selectedBooking
-                //destinationVC.delegate = self
+            if segue.identifier == "ViewSegue" {
+                if let destinationVC = segue.destination as? HHViewViewController,
+                   let selectedBooking = sender as? Booking {
+                    destinationVC.selectedBooking = selectedBooking
+                }
             }
         }
-    }
+
     
     
     
@@ -139,7 +138,20 @@ class HHistoryTableViewController: UITableViewController {
         filterBookings()
         tableView.reloadData()
     }
+    
+    func cancelBooking(at indexPath: IndexPath) {
+        
+        let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
+        selectedBooking.status = .cancelled
 
+        // Reload the data and refresh the table view
+        tableView.reloadData()
+
+        // Optionally, switch to the "Cancelled" segment
+        segmentControl.selectedSegmentIndex = 3
+        filterBookings()
+        tableView.reloadData()
+    }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -172,36 +184,35 @@ class HHistoryTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
                 self?.selectedBooking?.status = .compleleted
                 self?.completeBooking(at: indexPath)
+                self?.tableView.reloadData()
             }))
 
-            // Present the alert
-            present(alert, animated: true, completion: nil)
+            // Present the alert on the main thread
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
         }
 
-    func cancelBooking(at indexPath: IndexPath) {
-        let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
-        selectedBooking.status = .cancelled
+    func showCancelAlert(at indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Cancel Booking", message: "Are you sure you want to cancel this booking?", preferredStyle: .alert)
 
-        // Reload the data and refresh the table view
-        tableView.reloadData()
+        // Add a cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-        // Optionally, switch to the "Cancelled" segment
-        segmentControl.selectedSegmentIndex = 3
-        filterBookings()
-        tableView.reloadData()
+        // Add a confirm action
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
+            self?.cancelBooking(at: indexPath)
+        }))
+
+        // Present the alert on the main thread
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+
    
 }
    
-
-
-    //func updateBookingStatus(at indexPath: IndexPath, newStatus: BookingStatus) {
-           // Update the status in your data source
-          // bookings[indexPath.row].status = newStatus
-           //tableView.reloadRows(at: [indexPath], with: .automatic)
-       //}
-  // }
-    
     
 
 

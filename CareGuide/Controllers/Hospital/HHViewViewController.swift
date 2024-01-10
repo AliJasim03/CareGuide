@@ -7,15 +7,13 @@
 
 import UIKit
 
-class HHViewViewController: UIViewController {
+class HHViewViewController: UIViewController{
     
     var database: DataBase?
     var selectedUser: User?
     var selectedBooking: Booking?
     var selectedIndexPath: IndexPath?
     
-    
-    @IBOutlet weak var CompleteButton: UIBarButtonItem!
     
     @IBOutlet weak var Namelbl: UILabel!
     @IBOutlet weak var doblbl: UILabel!
@@ -28,37 +26,28 @@ class HHViewViewController: UIViewController {
     
     
     
-    
+    @IBOutlet var tableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        database = DataBase.createInstance()
-        database?.addSampleDataIfNeeded()
-        
-        
-        selectedUser = database?.getUser()
-        selectedBooking = database?.getBooking()
-        
-        
-        configure(with: selectedUser, and: selectedBooking)
-        
-        //CompleteButton.addTarget(self, action: #selector(completeButtonPressed), for: .touchUpInside)
-    }
-    
-    func completeBooking(at indexPath: IndexPath) {
-            guard let selectedBooking = selectedBooking else {
-                return
+        if let patient = selectedBooking?.patient {
+                    selectedUser = patient
+                }
+
+                configure(with: selectedUser, and: selectedBooking)
             }
-
-            selectedBooking.status = .compleleted
-            updateUI()
-
-            // Notify the delegate or use any other method to communicate the completion to HHistoryTableViewController
-        }
-
-        func updateUI() {
-            // Perform any UI updates if needed
-        }
+    //func completeBooking(at indexPath: IndexPath) {
+        //guard let selectedBooking = selectedBooking else {
+          //  return
+        //}
+        
+       // selectedBooking.status = .compleleted
+       // updateUI()
+    //}
+    
+   // func updateUI() {
+        // Perform any UI updates if needed
+    //}
     
     
     func configure(with user: User?, and booking: Booking?) {
@@ -70,31 +59,16 @@ class HHViewViewController: UIViewController {
         }
         
         if let booking = booking {
-            //Pricelbl.text = booking.price
+            Packagenamelbl.text = booking.testType
             Datelbl.text = booking.date
+            Pricelbl.text = booking.price
+            includeslbl.text = booking.include
         }
+        
     }
-  
-}
     
-   // @IBAction func completeButtonPressed(_ sender: Any) {
-       
-        
-        //let alert = UIAlertController(title: "Complete Booking", message: "Are you sure you want to mark this booking as completed?", preferredStyle: .alert)
-        
-        // Add a cancel action
-        //alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // Add a confirm action
-       // alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
-           // self?.updateUI()
-          //  self?.dismiss(animated: true, completion: nil)
-     //   }))
-        
-        // Present the alert
-        //present(alert, animated: true, completion: nil)
-   // }
-//}
+}
+   
     /*
     // MARK: - Navigation
 
