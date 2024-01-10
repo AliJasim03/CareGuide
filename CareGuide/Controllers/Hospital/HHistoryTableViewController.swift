@@ -8,12 +8,14 @@
 import UIKit
 
 class HHistoryTableViewController: UITableViewController {
+    
+    // Properties to store data
     var selectedBooking: Booking?
     var bookings = DataBase.bookings
     var filteredBookings = [Booking]()
     
     
-    
+    // Outlet for segmented control
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -26,20 +28,17 @@ class HHistoryTableViewController: UITableViewController {
 
         }
 
-        
-    
-    
-    
-    
+    // Method to set up the segmented control
     func setupSegmentedControl() {
         segmentControl.addTarget(self, action: #selector(segmentControlValueChanged), for: .valueChanged)
     }
-    
+    // Action when the value of segmented control changes
     @objc func segmentControlValueChanged() {
         filterBookings()
         tableView.reloadData()
     }
     
+    // Method to filter bookings based on the selected segment
     func filterBookings() {
         let selectedSegmentIndex = segmentControl.selectedSegmentIndex
         switch selectedSegmentIndex {
@@ -67,7 +66,7 @@ class HHistoryTableViewController: UITableViewController {
         return 130.0
     }
     // MARK: - Table view data source
-    
+    // Override to set the number of sections in the table view
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -83,10 +82,10 @@ class HHistoryTableViewController: UITableViewController {
     
     
    
-    
+    // Override to set up the content of each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.HBookingCell.rawValue, for: indexPath) as! HospitalBookingsTableViewCell
-        
+        // Determine the booking object for the current row based on the selected segment
         let booking: Booking
         if segmentControl.selectedSegmentIndex == UISegmentedControl.noSegment {
             booking = bookings[indexPath.row]
@@ -98,7 +97,7 @@ class HHistoryTableViewController: UITableViewController {
         
         return cell
     }
-    
+    // Override to handle row selection
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -106,7 +105,7 @@ class HHistoryTableViewController: UITableViewController {
         performSegue(withIdentifier: "ViewSegue", sender: selectedBooking)
     }
 
-    
+    // Override to prepare for the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "ViewSegue" {
                 if let destinationVC = segue.destination as? HHViewViewController,
@@ -125,7 +124,7 @@ class HHistoryTableViewController: UITableViewController {
         return true
     }
     
-    
+    // Method to mark a booking as completed
     func moveBookingToCompleted(at indexPath: IndexPath) {
         let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
         selectedBooking.status = .compleleted
@@ -133,7 +132,7 @@ class HHistoryTableViewController: UITableViewController {
         // Reload the data and refresh the table view
         tableView.reloadData()
 
-        // Optionally, switch to the "Completed" segment
+        // switch to the "Completed" segment
         segmentControl.selectedSegmentIndex = 2
         filterBookings()
         tableView.reloadData()
@@ -147,7 +146,7 @@ class HHistoryTableViewController: UITableViewController {
         // Reload the data and refresh the table view
         tableView.reloadData()
 
-        // Optionally, switch to the "Cancelled" segment
+        // switch to the "Cancelled" segment
         segmentControl.selectedSegmentIndex = 3
         filterBookings()
         tableView.reloadData()

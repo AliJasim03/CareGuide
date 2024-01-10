@@ -8,7 +8,7 @@
 import UIKit
 
 class HHViewViewController: UIViewController{
-    
+    // Properties to store data
     var database: DataBase?
     var selectedUser: User?
     var selectedBooking: Booking?
@@ -30,24 +30,13 @@ class HHViewViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set selectedUser based on the patient from selectedBooking
         if let patient = selectedBooking?.patient {
                     selectedUser = patient
                 }
-
+        // Configure UI with selectedUser and selectedBooking
                 configure(with: selectedUser, and: selectedBooking)
             }
-    //func completeBooking(at indexPath: IndexPath) {
-        //guard let selectedBooking = selectedBooking else {
-          //  return
-        //}
-        
-       // selectedBooking.status = .compleleted
-       // updateUI()
-    //}
-    
-   // func updateUI() {
-        // Perform any UI updates if needed
-    //}
     
     
     func configure(with user: User?, and booking: Booking?) {

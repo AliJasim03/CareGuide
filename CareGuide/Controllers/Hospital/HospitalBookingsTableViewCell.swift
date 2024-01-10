@@ -10,14 +10,14 @@ import UIKit
 class HospitalBookingsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var Statuslbl: UILabel!
-        @IBOutlet weak var Testlbl: UILabel!
-        @IBOutlet weak var Pricelbl: UILabel!
-        @IBOutlet weak var Datelbl: UILabel!
-        
+    @IBOutlet weak var Testlbl: UILabel!
+    @IBOutlet weak var Pricelbl: UILabel!
+    @IBOutlet weak var Datelbl: UILabel!
     @IBOutlet weak var patientlbl: UILabel!
     
         func configure(booking: Booking){
             Statuslbl.text = "i"
+            // Set the patient label text
             if let patient = booking.patient {
                 patientlbl.text = patient.fullName
             } else {
