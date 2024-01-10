@@ -17,11 +17,13 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         segmentedControl.addTarget(self, action: #selector(SegmentController(_:)), for: .valueChanged)
-       
-        tests = loadArrays()?.0 ?? []
-        packages = loadArrays()?.1 ?? []
-
+        
+        if let loadedArrays = loadArrays() {
+            tests = loadedArrays.0
+            packages = loadedArrays.1
+        }
     }
 
     // MARK: - Table view data source
@@ -73,7 +75,7 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
             let testPrice = Double(PriceTxt.text ?? "") ?? 0.0
             let description = DescriptionTxt.text ?? ""
             let test = Test(name: testName, price: testPrice, description: description)
-
+            
             tests.append(test)
         case 0:
             let testName = NameTxtField.text ?? ""
@@ -81,11 +83,13 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
             let description = DescriptionTxt.text ?? ""
             let package = Package(name: testName, price: testPrice, description: description, tests: [])
             packages.append(package)
-
+            
         default:
             print("Error")
         }
-        saveArrays(tests, packages)
+        
+        saveArrays(tests, packages) // Save the arrays to UserDefaults
+        tableView.reloadData() // Reload the table view to reflect the changes
     }
     
     
