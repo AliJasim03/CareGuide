@@ -20,7 +20,11 @@ class ContactUsViewController: UIViewController {
 
     @IBAction func emailButtonTapped(_ sender: UIButton) {
         if let email = emailButton.titleLabel?.text, let url = URL(string: "mailto:\(email)") {
-            UIApplication.shared.open(url)
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            } else {
+                print("No mail app available.")
+            }
         }
     }
    

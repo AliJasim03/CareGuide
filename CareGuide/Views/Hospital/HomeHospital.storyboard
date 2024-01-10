@@ -55,7 +55,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMO-ZW-pRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390" y="739"/>
+            <point key="canvasLocation" x="1392" y="739"/>
         </scene>
         <!--Hospital Packages Tests Table View Controller-->
         <scene sceneID="mDa-Jl-xdu">
@@ -209,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crw-1J-kYo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2306" y="739"/>
+            <point key="canvasLocation" x="2285" y="739"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="COi-5l-Vrg">
