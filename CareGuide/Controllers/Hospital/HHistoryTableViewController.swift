@@ -8,12 +8,14 @@
 import UIKit
 
 class HHistoryTableViewController: UITableViewController {
+    
+    // Properties to store data
     var selectedBooking: Booking?
     var bookings = DataBase.bookings
     var filteredBookings = [Booking]()
     
     
-    
+    // Outlet for segmented control
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -26,20 +28,17 @@ class HHistoryTableViewController: UITableViewController {
 
         }
 
-        
-    
-    
-    
-    
+    // Method to set up the segmented control
     func setupSegmentedControl() {
         segmentControl.addTarget(self, action: #selector(segmentControlValueChanged), for: .valueChanged)
     }
-    
+    // Action when the value of segmented control changes
     @objc func segmentControlValueChanged() {
         filterBookings()
         tableView.reloadData()
     }
     
+    // Method to filter bookings based on the selected segment
     func filterBookings() {
         let selectedSegmentIndex = segmentControl.selectedSegmentIndex
         switch selectedSegmentIndex {
@@ -67,7 +66,7 @@ class HHistoryTableViewController: UITableViewController {
         return 130.0
     }
     // MARK: - Table view data source
-    
+    // Override to set the number of sections in the table view
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -83,10 +82,10 @@ class HHistoryTableViewController: UITableViewController {
     
     
    
-    
+    // Override to set up the content of each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.HBookingCell.rawValue, for: indexPath) as! HospitalBookingsTableViewCell
-        
+        // Determine the booking object for the current row based on the selected segment
         let booking: Booking
         if segmentControl.selectedSegmentIndex == UISegmentedControl.noSegment {
             booking = bookings[indexPath.row]
@@ -98,25 +97,24 @@ class HHistoryTableViewController: UITableViewController {
         
         return cell
     }
-    
+    // Override to handle row selection
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Ensure no manual segue is triggered here
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
         performSegue(withIdentifier: "ViewSegue", sender: selectedBooking)
     }
 
-    
+    // Override to prepare for the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewSegue" {
-            if let destinationVC = segue.destination as? HHViewViewController,
-               let selectedBooking = sender as? Booking {
-                destinationVC.selectedBooking = selectedBooking
-                //destinationVC.delegate = self
+            if segue.identifier == "ViewSegue" {
+                if let destinationVC = segue.destination as? HHViewViewController,
+                   let selectedBooking = sender as? Booking {
+                    destinationVC.selectedBooking = selectedBooking
+                }
             }
         }
-    }
+
     
     
     
@@ -126,7 +124,7 @@ class HHistoryTableViewController: UITableViewController {
         return true
     }
     
-    
+    // Method to mark a booking as completed
     func moveBookingToCompleted(at indexPath: IndexPath) {
         let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
         selectedBooking.status = .compleleted
@@ -134,12 +132,25 @@ class HHistoryTableViewController: UITableViewController {
         // Reload the data and refresh the table view
         tableView.reloadData()
 
-        // Optionally, switch to the "Completed" segment
+        // switch to the "Completed" segment
         segmentControl.selectedSegmentIndex = 2
         filterBookings()
         tableView.reloadData()
     }
+    
+    func cancelBooking(at indexPath: IndexPath) {
+        
+        let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
+        selectedBooking.status = .cancelled
 
+        // Reload the data and refresh the table view
+        tableView.reloadData()
+
+        // switch to the "Cancelled" segment
+        segmentControl.selectedSegmentIndex = 3
+        filterBookings()
+        tableView.reloadData()
+    }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -172,36 +183,35 @@ class HHistoryTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
                 self?.selectedBooking?.status = .compleleted
                 self?.completeBooking(at: indexPath)
+                self?.tableView.reloadData()
             }))
 
-            // Present the alert
-            present(alert, animated: true, completion: nil)
+            // Present the alert on the main thread
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
         }
 
-    func cancelBooking(at indexPath: IndexPath) {
-        let selectedBooking = segmentControl.selectedSegmentIndex == 0 ? bookings[indexPath.row] : filteredBookings[indexPath.row]
-        selectedBooking.status = .cancelled
+    func showCancelAlert(at indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Cancel Booking", message: "Are you sure you want to cancel this booking?", preferredStyle: .alert)
 
-        // Reload the data and refresh the table view
-        tableView.reloadData()
+        // Add a cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-        // Optionally, switch to the "Cancelled" segment
-        segmentControl.selectedSegmentIndex = 3
-        filterBookings()
-        tableView.reloadData()
+        // Add a confirm action
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
+            self?.cancelBooking(at: indexPath)
+        }))
+
+        // Present the alert on the main thread
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+
    
 }
    
-
-
-    //func updateBookingStatus(at indexPath: IndexPath, newStatus: BookingStatus) {
-           // Update the status in your data source
-          // bookings[indexPath.row].status = newStatus
-           //tableView.reloadRows(at: [indexPath], with: .automatic)
-       //}
-  // }
-    
     
 
 
