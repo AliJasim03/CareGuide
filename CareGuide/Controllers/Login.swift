@@ -112,7 +112,7 @@ class Login: UIViewController {
             self.view.window!.rootViewController = newVc        }
         })
         
-        if email == "admin@gmail.com"{
+        if email.lowercased() == "admin@gmail.com"{
             UserDefaults.standard.set(Auth.auth().currentUser!.uid,forKey: "admin_uid_key")
             let storyboard = UIStoryboard(name: "AdminTabBar", bundle: nil)
             let newVc = storyboard.instantiateViewController(withIdentifier: "AdminTabBar")
