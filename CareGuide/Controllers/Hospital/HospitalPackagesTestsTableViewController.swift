@@ -8,29 +8,31 @@
 import UIKit
 
 class HospitalPackagesTestsTableViewController: UITableViewController {
-
+    
     var selectedSegmentIndex = 0
     var data: [Any] = [] // An array to store tests and packages
-
+    
     var tests: [Test] = []
     var packages: [Package] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         segmentedControl.addTarget(self, action: #selector(SegmentController(_:)), for: .valueChanged)
-       
-        tests = loadArrays()?.0 ?? []
-        packages = loadArrays()?.1 ?? []
-
+        
+        if let loadedArrays = loadArrays() {
+            tests = loadedArrays.0
+            packages = loadedArrays.1
+        }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections based on the selected index
         return selectedSegmentIndex == 1 ? 2 : 3
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -43,7 +45,7 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
             return 0
         }
     }
-
+    
     struct Test: Codable {
         var name: String
         var price: Double
@@ -73,7 +75,7 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
             let testPrice = Double(PriceTxt.text ?? "") ?? 0.0
             let description = DescriptionTxt.text ?? ""
             let test = Test(name: testName, price: testPrice, description: description)
-
+            
             tests.append(test)
         case 0:
             let testName = NameTxtField.text ?? ""
@@ -81,46 +83,57 @@ class HospitalPackagesTestsTableViewController: UITableViewController {
             let description = DescriptionTxt.text ?? ""
             let package = Package(name: testName, price: testPrice, description: description, tests: [])
             packages.append(package)
-
+            
         default:
             print("Error")
         }
-        saveArrays(tests, packages)
+        
+        saveArrays(tests, packages) // Save the arrays to UserDefaults
+        let alertController = UIAlertController(title: "Confirmation", message: "A new Package Added", preferredStyle: .alert)
+        
+        // Add actions to the alert controller
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)  
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+        
+        tableView.reloadData() // Reload the table view to reflect the changes
     }
     
     
     
     var selectedSegment = 0
-
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBAction func SegmentController(_ sender: UISegmentedControl) {
         // Update the selected index property
         selectedSegmentIndex = sender.selectedSegmentIndex
-
+        
         // Reload the table view to reflect the changes
         tableView.reloadData()
     }
     
     
     func saveArrays(_ array1: [Test], _ array2: [Package]) {
-       let encoder = JSONEncoder()
-       if let encoded1 = try? encoder.encode(array1),
-          let encoded2 = try? encoder.encode(array2) {
-           UserDefaults.standard.set(encoded1, forKey: "TestsKey")
-           UserDefaults.standard.set(encoded2, forKey: "PackagesKey")
-       }
+        let encoder = JSONEncoder()
+        if let encoded1 = try? encoder.encode(array1),
+           let encoded2 = try? encoder.encode(array2) {
+            UserDefaults.standard.set(encoded1, forKey: "TestsKey")
+            UserDefaults.standard.set(encoded2, forKey: "PackagesKey")
+        }
     }
-
-
+    
+    
     func loadArrays() -> ([Test], [Package])? {
-       if let savedData1 = UserDefaults.standard.data(forKey: "TestsKey"),
-          let savedData2 = UserDefaults.standard.data(forKey: "PackagesKey"),
-          let loadedArray1 = try? JSONDecoder().decode([Test].self, from: savedData1),
-          let loadedArray2 = try? JSONDecoder().decode([Package].self, from: savedData2) {
-           return (loadedArray1, loadedArray2)
-       }
-       return nil
+        if let savedData1 = UserDefaults.standard.data(forKey: "TestsKey"),
+           let savedData2 = UserDefaults.standard.data(forKey: "PackagesKey"),
+           let loadedArray1 = try? JSONDecoder().decode([Test].self, from: savedData1),
+           let loadedArray2 = try? JSONDecoder().decode([Package].self, from: savedData2) {
+            return (loadedArray1, loadedArray2)
+        }
+        return nil
     }
-
+    
     
 }

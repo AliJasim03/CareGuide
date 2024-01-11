@@ -1,124 +1,150 @@
 //
-//  TableViewController.swift
+//  HospitalsHomePageTableViewController.swift
 //  CareGuide
 //
-//  Created by Lui on 07/01/2024.
+//  Created by Rashed Albuainain on 09/01/2024.
 //
 
 import UIKit
 import FirebaseAuth
-
-
+//viewPTCell
 class HospitalsHomePageTableViewController: UITableViewController {
-
+    var selectedSegmentIndex = 0
+    var data: [Any] = [] // An array to store tests and packages
+    
+    var tests: [Test] = []
+    var packages: [Package] = []
+    
+    
+    @IBOutlet weak var pName: UILabel!
+    @IBOutlet weak var ptName: UILabel!
+    @IBOutlet weak var ptExpirationDate: UILabel!
+    @IBOutlet weak var ptNumberOfTest: UILabel!
+    @IBOutlet weak var ptPrice: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Set up the table view
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "viewPTCell")
+        tableView.tableFooterView = UIView()
+        segmentedControl.addTarget(self, action: #selector(SegmentController(_:)), for: .valueChanged)
+        
+   
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    
-    
-    
-    @IBAction func SignOut(_ sender: Any) {
-        print("jaffer is the best")
-        let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-
-        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { _ in
-            self.performSignOut()
+    override func viewWillAppear(_ animated: Bool) {
+        if let loadedArrays = loadArrays() {
+            tests = loadedArrays.0
+            packages = loadedArrays.1
         }
-        alertController.addAction(signOutAction)
-
-        present(alertController, animated: true, completion: nil)
+        tableView.reloadData()
+        
+    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 // Only one section for displaying saved packages
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if selectedSegmentIndex == 0{
+            return packages.count
+        }else {
+            return tests.count
+            
+        }
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "viewPTCell", for: indexPath)
+        if selectedSegmentIndex == 0{
+            cell.textLabel?.text = packages[indexPath.row].name
+        }else {
+            cell.textLabel?.text = tests[indexPath.row].name
+        }
+        
+        return cell
+    }
+    @IBAction func SegmentController(_ sender: UISegmentedControl) {
+        // Update the selected index property
+        selectedSegmentIndex = sender.selectedSegmentIndex
+        
+        // Reload the table view to reflect the changes
+        tableView.reloadData()
+    }
+    // ... other code ...
     
-    func performSignOut() {
-        do {
+    // Function to add a saved package to the array and reload the table view
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Create an alert controller for confirmation
+            let alertController = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+            
+            // Add actions to the alert controller
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                // Remove the item from the data source (selectedData)
+                
+                if self.selectedSegmentIndex ==  0{
+                    self.packages.remove(at: indexPath.row)
+                }else{
+                    self.tests.remove(at: indexPath.row)
+                }
+                
+                
+                // Update the table view with the new data source
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                // Do nothing when cancel is pressed
+            }
+            
+            // Add the actions to the alert controller
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
+            
+            // Present the alert controller
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    // ... other code ...
+    @IBAction func signOutTappedButton(_ sender: Any) {
+        do{
             try FirebaseAuth.Auth.auth().signOut()
-            UserDefaults.standard.removeObject(forKey: "hospital_uid_key")
-            UserDefaults.standard.synchronize()
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let newVc = storyboard.instantiateViewController(withIdentifier: "Main")
-            self.view.window!.rootViewController = newVc
         } catch {
             print("Error Signing out")
         }
+        UserDefaults.standard.removeObject(forKey: "hospital_uid_key")
+        UserDefaults.standard.synchronize()
+        let storyboard = UIStoryboard(
+            name: "Main",
+            bundle: nil
+        )
+        let newVc = storyboard.instantiateViewController(withIdentifier: "Main")
+        self.view.window!.rootViewController = newVc
     }
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+}
 
-        // Configure the cell...
+struct Test: Codable {
+    var name: String
+    var price: Double
+    var description: String
+}
 
-        return cell
+struct Package: Codable {
+    var name: String
+    var price: Double
+    var description: String
+    var tests: [Test]
+}
+func loadArrays() -> ([Test], [Package])? {
+    if let savedData1 = UserDefaults.standard.data(forKey: "TestsKey"),
+       let savedData2 = UserDefaults.standard.data(forKey: "PackagesKey"),
+       let loadedArray1 = try? JSONDecoder().decode([Test].self, from: savedData1),
+       let loadedArray2 = try? JSONDecoder().decode([Package].self, from: savedData2) {
+        return (loadedArray1, loadedArray2)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    return nil
 }
