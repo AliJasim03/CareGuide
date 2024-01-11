@@ -51,7 +51,6 @@ class SettingTableViewController: UITableViewController {
 
     func applyLightMode() {
         // Implement light mode UI changes here
-        // Update UI elements to their original light-themed appearance.
         if let scene = UIApplication.shared.connectedScenes.first(where: { $0 is UIWindowScene }) as? UIWindowScene {
              scene.windows.first?.overrideUserInterfaceStyle = .light
         }
@@ -68,7 +67,7 @@ class SettingTableViewController: UITableViewController {
         }
     }
 
-
+// this code will ask the user to confirm the signout before precceding to the code
     @IBAction func SignOutBtn(_ sender: Any) {
         let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
 
@@ -83,7 +82,7 @@ class SettingTableViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    
+//This part of the code that will do the actual signout
     func performSignOut() {
         do {
             try FirebaseAuth.Auth.auth().signOut()
@@ -98,10 +97,8 @@ class SettingTableViewController: UITableViewController {
         }
     }
     
-    
+    //this part of the code will make it so that it will ask the user to confirm his deletion of the acc
     @IBAction func DeleteAccountBtn(_ sender: Any) {
-  
-        
         let alertController = UIAlertController(title: "Delete Account", message: "Type 'DELETE ACCOUNT' to confirm:", preferredStyle: .alert)
 
         alertController.addTextField { textField in
@@ -126,7 +123,7 @@ class SettingTableViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     
     }
-    
+    //this code will show that the user input was wrong
     func showInvalidInputAlert() {
         let alert = UIAlertController(title: "Invalid Input", message: "Please type 'DELETE ACCOUNT' to confirm deletion.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -138,7 +135,7 @@ class SettingTableViewController: UITableViewController {
     }
     
     
-    
+    //this code will try to perfom the acc deletion 
     func deleteAccount() {
         // Perform account deletion logic here
         let user = FirebaseAuth.Auth.auth().currentUser

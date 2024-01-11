@@ -9,7 +9,7 @@ import UIKit
 
 class HomePatientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
+    // Define a structure for Hospital data
     struct Hospital {
             var name: String
             var location: String
@@ -21,6 +21,7 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
             var logo : String
     }
     
+    // Define a structure for Lab data
     struct Lab{
         let name: String
         let location: String
@@ -34,13 +35,17 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     
+   
+    // Arrays to store data for hospitals, labs, and the currently selected data
     var hospitals: [Hospital] = []
     var labs: [Lab] = []
     var selectedData: [Any] = []
     
 
-    @IBOutlet weak var tableView: UITableView!
+    // IBOutlet for the table view in the UI
+     @IBOutlet weak var tableView: UITableView!
    
+    // Initialize data for hospitals and labs
     override func viewDidLoad() {
         super.viewDidLoad()
         hospitals = [
@@ -56,7 +61,6 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
         ]
         
         // Initially set selectedData to hospitals and configure the table view
-        
         selectedData = hospitals
         tableView.dataSource = self
         tableView.delegate = self
@@ -64,9 +68,8 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.isEditing = false
     
     }
-    
+    //Checks which Segment is selected and assgins what data should be presented
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
-        // Update selectedData based on the selected segment
         if sender.selectedSegmentIndex == 0 {
             selectedData = hospitals
         } else if sender.selectedSegmentIndex == 1 {
@@ -77,11 +80,13 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
         // Reload the table view with the updated data
         tableView.reloadData()
     }
-    
+    // Number of rows in the table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedData.count
     }
     
+    
+    // Configure and return a cell for the specified index path
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Attempt to dequeue a reusable cell with the identifier "CommonCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommonCell", for: indexPath) as? CommonCell else {
@@ -104,7 +109,7 @@ class HomePatientViewController: UIViewController, UITableViewDataSource, UITabl
             cell.Img1.image = UIImage(named: data.logo)
         }
         
-        // Return the configured cell
+        // Return cell that had been customized
         return cell
     }
     
